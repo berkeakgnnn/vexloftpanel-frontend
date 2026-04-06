@@ -1,6 +1,7 @@
 "use client";
 
-import { use, useState } from "react";
+import { useParams } from "next/navigation";
+import { useState } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
 import {
@@ -107,6 +108,7 @@ function CategoryDialog({
               value={form.nameTr}
               onChange={(e) => setForm((f) => ({ ...f, nameTr: e.target.value }))}
               placeholder="Sicak Icecekler"
+              className="h-11"
             />
           </div>
           <div className="space-y-1.5">
@@ -115,12 +117,13 @@ function CategoryDialog({
               value={form.nameEn}
               onChange={(e) => setForm((f) => ({ ...f, nameEn: e.target.value }))}
               placeholder="Hot Beverages"
+              className="h-11"
             />
           </div>
           <div className="space-y-1.5">
             <Label>Layout</Label>
             <Select value={form.layout} onValueChange={(v) => { if (v) setForm((f) => ({ ...f, layout: v })); }}>
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full h-11">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -212,19 +215,19 @@ function ItemSheet({
         <div className="space-y-4 px-4 pb-4">
           <div className="space-y-1.5">
             <Label>Ad (TR)</Label>
-            <Input value={form.nameTr} onChange={field("nameTr")} placeholder="Americano" />
+            <Input value={form.nameTr} onChange={field("nameTr")} placeholder="Americano" className="h-11" />
           </div>
           <div className="space-y-1.5">
             <Label>Ad (EN)</Label>
-            <Input value={form.nameEn} onChange={field("nameEn")} placeholder="Americano" />
+            <Input value={form.nameEn} onChange={field("nameEn")} placeholder="Americano" className="h-11" />
           </div>
           <div className="space-y-1.5">
             <Label>Aciklama (TR)</Label>
-            <Input value={form.descriptionTr} onChange={field("descriptionTr")} placeholder="Espresso + su" />
+            <Input value={form.descriptionTr} onChange={field("descriptionTr")} placeholder="Espresso + su" className="h-11" />
           </div>
           <div className="space-y-1.5">
             <Label>Aciklama (EN)</Label>
-            <Input value={form.descriptionEn} onChange={field("descriptionEn")} placeholder="Espresso + water" />
+            <Input value={form.descriptionEn} onChange={field("descriptionEn")} placeholder="Espresso + water" className="h-11" />
           </div>
           <div className="space-y-1.5">
             <Label>Fiyat</Label>
@@ -235,11 +238,12 @@ function ItemSheet({
               value={form.price}
               onChange={field("price")}
               placeholder="45.00"
+              className="h-11"
             />
           </div>
           <div className="space-y-1.5">
             <Label>Gorsel URL</Label>
-            <Input value={form.image} onChange={field("image")} placeholder="https://..." />
+            <Input value={form.image} onChange={field("image")} placeholder="https://..." className="h-11" />
           </div>
         </div>
         <SheetFooter className="px-4 pb-4">
@@ -367,21 +371,21 @@ function CategorySection({
 
   return (
     <Card>
-      <CardHeader className="p-3">
+      <CardHeader className="p-4">
         <div className="flex items-center gap-2">
-          {/* Expand/collapse toggle — cursor-pointer and hover state for clarity */}
+          {/* Expand/collapse toggle */}
           <button
             onClick={() => setExpanded((v) => !v)}
-            className="flex flex-1 items-center gap-2 text-left cursor-pointer hover:text-foreground transition-colors"
+            className="flex flex-1 items-center gap-3 text-left cursor-pointer hover:text-foreground transition-colors"
           >
             {expanded ? (
-              <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
+              <ChevronDown className="h-5 w-5 text-muted-foreground shrink-0" />
             ) : (
-              <ChevronRight className="h-4 w-4 text-muted-foreground shrink-0" />
+              <ChevronRight className="h-5 w-5 text-muted-foreground shrink-0" />
             )}
             <div>
-              <span className="font-semibold text-sm">{category.nameTr}</span>
-              <span className="text-xs text-muted-foreground ml-2">
+              <span className="font-bold text-lg">{category.nameTr}</span>
+              <span className="text-sm text-muted-foreground ml-2.5">
                 {category._count?.items ?? 0} urun
               </span>
             </div>
@@ -403,31 +407,30 @@ function CategorySection({
       </CardHeader>
 
       {expanded && (
-        <CardContent className="p-3 pt-0 space-y-2">
+        <CardContent className="p-4 pt-0 space-y-2">
           {itemsLoading ? (
-            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-12 w-full" />
           ) : (
             <>
               {items?.map((item) => (
                 <div
                   key={item.id}
-                  className="flex items-center gap-3 p-2 rounded-lg border bg-gray-50/50"
+                  className="flex items-center gap-4 p-3 rounded-lg border bg-gray-50/50"
                 >
                   {item.image && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={item.image}
                       alt={item.nameTr}
-                      className="h-10 w-10 rounded object-cover shrink-0"
+                      className="h-12 w-12 rounded-lg object-cover shrink-0"
                     />
                   )}
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate">{item.nameTr}</p>
-                    {/* Description shown when present */}
+                    <p className="text-base font-semibold truncate">{item.nameTr}</p>
                     {item.descriptionTr && (
                       <p className="text-sm text-muted-foreground truncate">{item.descriptionTr}</p>
                     )}
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-lg font-bold mt-0.5">
                       {typeof item.price === "number" ? item.price.toFixed(2) : item.price} TL
                     </p>
                   </div>
@@ -448,11 +451,11 @@ function CategorySection({
               ))}
               <Button
                 variant="outline"
-                size="sm"
-                className="w-full mt-1 text-sm"
+                size="default"
+                className="w-full mt-2"
                 onClick={() => setAddItemOpen(true)}
               >
-                <Plus className="h-4 w-4 mr-1" />
+                <Plus className="h-4 w-4 mr-2" />
                 Urun Ekle
               </Button>
             </>
@@ -493,8 +496,9 @@ function CategorySection({
 
 // ---- Main page ----
 
-export default function MenuPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = use(params);
+export default function MenuPage() {
+  const params = useParams();
+  const slug = params.slug as string;
   const { data: categories, isLoading } = useCategories(slug);
   const createCategory = useCreateCategory(slug);
   const updateCategory = useUpdateCategory(slug);
@@ -542,31 +546,31 @@ export default function MenuPage({ params }: { params: Promise<{ slug: string }>
     <div className="space-y-6">
       <div className="flex items-center gap-3">
         <Link href={`/businesses/${slug}`}>
-          <Button variant="ghost" size="icon" className="h-9 w-9">
+          <Button variant="ghost" size="icon" className="h-10 w-10">
             <ArrowLeft className="h-5 w-5" />
           </Button>
         </Link>
         <div className="flex-1">
-          <h1 className="text-xl font-bold">Menu Yonetimi</h1>
-          <p className="text-sm text-muted-foreground">/{slug}</p>
+          <h1 className="text-3xl font-bold tracking-tight">Menu Yonetimi</h1>
+          <p className="text-base text-muted-foreground">/{slug}</p>
         </div>
-        <Button onClick={() => setAddCatOpen(true)}>
-          <Plus className="h-4 w-4 mr-1.5" />
+        <Button onClick={() => setAddCatOpen(true)} className="h-10 px-5">
+          <Plus className="h-4 w-4 mr-2" />
           Kategori Ekle
         </Button>
       </div>
 
       {isLoading ? (
         <div className="space-y-3">
-          <Skeleton className="h-14" />
-          <Skeleton className="h-14" />
-          <Skeleton className="h-14" />
+          <Skeleton className="h-16" />
+          <Skeleton className="h-16" />
+          <Skeleton className="h-16" />
         </div>
       ) : !categories?.length ? (
-        <div className="text-center py-12 text-muted-foreground">
-          <p className="text-sm">Henuz kategori yok.</p>
-          <Button variant="outline" className="mt-3" onClick={() => setAddCatOpen(true)}>
-            <Plus className="h-4 w-4 mr-1.5" />
+        <div className="text-center py-16 text-muted-foreground">
+          <p className="text-base">Henuz kategori yok.</p>
+          <Button variant="outline" className="mt-4 h-10" onClick={() => setAddCatOpen(true)}>
+            <Plus className="h-4 w-4 mr-2" />
             Ilk Kategoriyi Ekle
           </Button>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
-import { use, useState, useEffect } from "react";
+import { useParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -37,8 +38,9 @@ import { ArrowLeft, Save, Trash2 } from "lucide-react";
 
 const TEMPLATES = ["CAFE", "RESTAURANT", "PUB", "CUSTOM"] as const;
 
-export default function SettingsPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = use(params);
+export default function SettingsPage() {
+  const params = useParams();
+  const slug = params.slug as string;
   const router = useRouter();
   const { isAdmin } = useAuth();
 
@@ -80,7 +82,7 @@ export default function SettingsPage({ params }: { params: Promise<{ slug: strin
   if (isLoading) {
     return (
       <div className="space-y-4">
-        <Skeleton className="h-8 w-48" />
+        <Skeleton className="h-10 w-48" />
         <Skeleton className="h-48" />
       </div>
     );
@@ -90,30 +92,31 @@ export default function SettingsPage({ params }: { params: Promise<{ slug: strin
     <div className="space-y-6">
       <div className="flex items-center gap-3">
         <Link href={`/businesses/${slug}`}>
-          <Button variant="ghost" size="icon" className="h-9 w-9">
+          <Button variant="ghost" size="icon" className="h-10 w-10">
             <ArrowLeft className="h-5 w-5" />
           </Button>
         </Link>
         <div>
-          <h1 className="text-xl font-bold">Ayarlar</h1>
-          <p className="text-sm text-muted-foreground">/{slug}</p>
+          <h1 className="text-3xl font-bold tracking-tight">Ayarlar</h1>
+          <p className="text-base text-muted-foreground">/{slug}</p>
         </div>
       </div>
 
       <Card>
-        <CardHeader className="pb-3">
-          <CardTitle className="text-sm">Genel Ayarlar</CardTitle>
+        <CardHeader className="pb-4">
+          <CardTitle className="text-base font-semibold">Genel Ayarlar</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-1.5">
+        <CardContent className="space-y-5">
+          <div className="space-y-2">
             <Label className="text-sm font-medium">Isletme Adi</Label>
             <Input
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               placeholder="Kafe Adim"
+              className="h-11"
             />
           </div>
-          <div className="space-y-1.5">
+          <div className="space-y-2">
             <Label className="text-sm font-medium">Slug</Label>
             <Input
               value={form.slug}
@@ -124,18 +127,19 @@ export default function SettingsPage({ params }: { params: Promise<{ slug: strin
                 }))
               }
               placeholder="kafe-adim"
+              className="h-11"
             />
-            <p className="text-xs text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               Yalnizca kucuk harf, rakam ve tire kullanin.
             </p>
           </div>
-          <div className="space-y-1.5">
+          <div className="space-y-2">
             <Label className="text-sm font-medium">Sablon</Label>
             <Select
               value={form.template}
               onValueChange={(v) => { if (v) setForm((f) => ({ ...f, template: v })); }}
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full h-11">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -147,7 +151,7 @@ export default function SettingsPage({ params }: { params: Promise<{ slug: strin
               </SelectContent>
             </Select>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 pt-1">
             <Switch
               checked={form.isActive}
               onCheckedChange={(v) => setForm((f) => ({ ...f, isActive: v }))}
@@ -158,8 +162,8 @@ export default function SettingsPage({ params }: { params: Promise<{ slug: strin
       </Card>
 
       <div className="flex justify-end">
-        <Button onClick={handleSave} disabled={update.isPending}>
-          <Save className="h-4 w-4 mr-1.5" />
+        <Button onClick={handleSave} disabled={update.isPending} className="h-11 px-6 text-base">
+          <Save className="h-4 w-4 mr-2" />
           {update.isPending ? "Kaydediliyor..." : "Kaydet"}
         </Button>
       </div>
@@ -167,15 +171,15 @@ export default function SettingsPage({ params }: { params: Promise<{ slug: strin
       {/* Danger zone — admin only */}
       {isAdmin && (
         <Card className="border-destructive/40">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm text-destructive">Tehlikeli Bolge</CardTitle>
+          <CardHeader className="pb-4">
+            <CardTitle className="text-base font-semibold text-destructive">Tehlikeli Bolge</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-muted-foreground mb-4">
+            <p className="text-sm text-muted-foreground mb-5">
               Isletmeyi silmek geri alinamaz. Tum kategoriler, urunler ve tema ayarlari da silinir.
             </p>
-            <Button variant="destructive" onClick={() => setDeleteOpen(true)}>
-              <Trash2 className="h-4 w-4 mr-1.5" />
+            <Button variant="destructive" className="h-10" onClick={() => setDeleteOpen(true)}>
+              <Trash2 className="h-4 w-4 mr-2" />
               Isletmeyi Sil
             </Button>
           </CardContent>

@@ -1,6 +1,7 @@
 "use client";
 
-import { use, useState, useEffect } from "react";
+import { useParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { HexColorPicker } from "react-colorful";
@@ -24,7 +25,7 @@ const COLOR_FIELDS: { key: keyof BusinessTheme; label: string }[] = [
 
 const LAYOUT_OPTIONS = ["DEFAULT", "MINIMAL", "DARK", "LUXURY"] as const;
 
-// Small inline color picker field
+// Inline color picker field
 function ColorField({
   label,
   value,
@@ -37,27 +38,28 @@ function ColorField({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="space-y-1.5">
-      <Label className="text-sm">{label}</Label>
+    <div className="space-y-2">
+      <Label className="text-sm font-medium">{label}</Label>
       <div className="relative">
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="flex items-center gap-2 h-8 px-2.5 w-full rounded-lg border border-input bg-background text-sm hover:bg-muted transition-colors"
+          className="flex items-center gap-3 h-10 px-3 w-full rounded-lg border border-input bg-background text-sm hover:bg-muted transition-colors"
         >
+          {/* Bigger swatch */}
           <span
-            className="inline-block h-4 w-4 rounded border border-border shrink-0"
+            className="inline-block h-6 w-6 rounded border border-border shrink-0"
             style={{ backgroundColor: value || "#ffffff" }}
           />
-          <span className="font-mono text-xs">{value || "#ffffff"}</span>
+          <span className="font-mono text-sm">{value || "#ffffff"}</span>
         </button>
         {open && (
-          <div className="absolute z-50 mt-1 p-2 bg-popover rounded-lg ring-1 ring-foreground/10 shadow-md">
+          <div className="absolute z-50 mt-1 p-3 bg-popover rounded-lg ring-1 ring-foreground/10 shadow-md">
             <HexColorPicker color={value || "#ffffff"} onChange={onChange} />
             <Input
               value={value}
               onChange={(e) => onChange(e.target.value)}
-              className="mt-2 h-7 font-mono text-xs"
+              className="mt-2 h-9 font-mono text-sm"
               placeholder="#ffffff"
             />
             <Button
@@ -75,8 +77,9 @@ function ColorField({
   );
 }
 
-export default function ThemePage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = use(params);
+export default function ThemePage() {
+  const params = useParams();
+  const slug = params.slug as string;
   const { data: theme, isLoading } = useTheme(slug);
   const update = useUpdateTheme(slug);
 
@@ -102,9 +105,9 @@ export default function ThemePage({ params }: { params: Promise<{ slug: string }
   if (isLoading) {
     return (
       <div className="space-y-4">
-        <Skeleton className="h-8 w-48" />
+        <Skeleton className="h-10 w-48" />
         <div className="flex gap-6">
-          <Skeleton className="h-96 w-80" />
+          <Skeleton className="h-96 w-96" />
           <Skeleton className="flex-1 h-96" />
         </div>
       </div>
@@ -115,24 +118,24 @@ export default function ThemePage({ params }: { params: Promise<{ slug: string }
     <div className="space-y-6">
       <div className="flex items-center gap-3">
         <Link href={`/businesses/${slug}`}>
-          <Button variant="ghost" size="icon" className="h-9 w-9">
+          <Button variant="ghost" size="icon" className="h-10 w-10">
             <ArrowLeft className="h-5 w-5" />
           </Button>
         </Link>
         <div>
-          <h1 className="text-xl font-bold">Tema Editoru</h1>
-          <p className="text-sm text-muted-foreground">/{slug}</p>
+          <h1 className="text-3xl font-bold tracking-tight">Tema Editoru</h1>
+          <p className="text-base text-muted-foreground">/{slug}</p>
         </div>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-6">
-        {/* Left panel: controls */}
-        <div className="w-full lg:w-80 shrink-0 space-y-4">
+        {/* Left panel: controls — wider at 380px */}
+        <div className="w-full lg:w-[380px] shrink-0 space-y-4">
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm">Renkler</CardTitle>
+              <CardTitle className="text-base font-semibold">Renkler</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
+            <CardContent className="space-y-4">
               {COLOR_FIELDS.map(({ key, label }) => (
                 <ColorField
                   key={key}
@@ -146,23 +149,25 @@ export default function ThemePage({ params }: { params: Promise<{ slug: string }
 
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm">Fontlar</CardTitle>
+              <CardTitle className="text-base font-semibold">Fontlar</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="space-y-1.5">
-                <Label className="text-sm">Baslik Fontu</Label>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label className="text-sm font-medium">Baslik Fontu</Label>
                 <Input
                   value={(form.fontHeading as string) ?? ""}
                   onChange={(e) => setForm((f) => ({ ...f, fontHeading: e.target.value }))}
                   placeholder="Playfair Display"
+                  className="h-11"
                 />
               </div>
-              <div className="space-y-1.5">
-                <Label className="text-sm">Govde Fontu</Label>
+              <div className="space-y-2">
+                <Label className="text-sm font-medium">Govde Fontu</Label>
                 <Input
                   value={(form.fontBody as string) ?? ""}
                   onChange={(e) => setForm((f) => ({ ...f, fontBody: e.target.value }))}
                   placeholder="Inter"
+                  className="h-11"
                 />
               </div>
             </CardContent>
@@ -170,7 +175,7 @@ export default function ThemePage({ params }: { params: Promise<{ slug: string }
 
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm">Layout</CardTitle>
+              <CardTitle className="text-base font-semibold">Layout</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 gap-2">
@@ -179,7 +184,7 @@ export default function ThemePage({ params }: { params: Promise<{ slug: string }
                     key={opt}
                     type="button"
                     onClick={() => setForm((f) => ({ ...f, layoutType: opt }))}
-                    className={`cursor-pointer px-3 py-2 rounded-lg border text-xs font-medium transition-colors ${
+                    className={`cursor-pointer px-3 py-2.5 rounded-lg border text-sm font-medium transition-colors ${
                       form.layoutType === opt
                         ? "bg-primary text-primary-foreground border-transparent"
                         : "border-input hover:bg-muted"
@@ -194,30 +199,32 @@ export default function ThemePage({ params }: { params: Promise<{ slug: string }
 
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm">Medya</CardTitle>
+              <CardTitle className="text-base font-semibold">Medya</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="space-y-1.5">
-                <Label className="text-sm">Logo URL</Label>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label className="text-sm font-medium">Logo URL</Label>
                 <Input
                   value={(form.logo as string) ?? ""}
                   onChange={(e) => setForm((f) => ({ ...f, logo: e.target.value }))}
                   placeholder="https://..."
+                  className="h-11"
                 />
               </div>
-              <div className="space-y-1.5">
-                <Label className="text-sm">Hero Gorsel URL</Label>
+              <div className="space-y-2">
+                <Label className="text-sm font-medium">Hero Gorsel URL</Label>
                 <Input
                   value={(form.heroImage as string) ?? ""}
                   onChange={(e) => setForm((f) => ({ ...f, heroImage: e.target.value }))}
                   placeholder="https://..."
+                  className="h-11"
                 />
               </div>
             </CardContent>
           </Card>
 
-          <Button onClick={handleSave} disabled={update.isPending} className="w-full">
-            <Save className="h-4 w-4 mr-1.5" />
+          <Button onClick={handleSave} disabled={update.isPending} className="w-full h-11 text-base">
+            <Save className="h-4 w-4 mr-2" />
             {update.isPending ? "Kaydediliyor..." : "Kaydet"}
           </Button>
         </div>
@@ -226,7 +233,7 @@ export default function ThemePage({ params }: { params: Promise<{ slug: string }
         <div className="flex-1 min-h-[500px]">
           <Card className="h-full">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm">Onizleme</CardTitle>
+              <CardTitle className="text-base font-semibold">Onizleme</CardTitle>
             </CardHeader>
             <CardContent className="p-0 h-[calc(100%-52px)]">
               {API_URL ? (

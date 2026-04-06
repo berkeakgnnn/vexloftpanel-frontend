@@ -1,6 +1,6 @@
 "use client";
 
-import { use } from "react";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useBusiness } from "@/lib/hooks/use-businesses";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,25 +8,26 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { UtensilsCrossed, Palette, Info, Settings, ExternalLink, ArrowLeft } from "lucide-react";
 
-export default function BusinessPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = use(params);
+export default function BusinessPage() {
+  const params = useParams();
+  const slug = params.slug as string;
   const { data: business, isLoading } = useBusiness(slug);
 
   if (isLoading) {
     return (
-      <div className="space-y-4">
-        <Skeleton className="h-8 w-64" />
-        <div className="grid grid-cols-2 gap-4">
-          <Skeleton className="h-24" />
-          <Skeleton className="h-24" />
-          <Skeleton className="h-24" />
-          <Skeleton className="h-24" />
+      <div className="space-y-6">
+        <Skeleton className="h-10 w-64" />
+        <div className="grid grid-cols-2 gap-5">
+          <Skeleton className="h-28" />
+          <Skeleton className="h-28" />
+          <Skeleton className="h-28" />
+          <Skeleton className="h-28" />
         </div>
       </div>
     );
   }
 
-  if (!business) return <div>Isletme bulunamadi</div>;
+  if (!business) return <div className="text-base text-muted-foreground">Isletme bulunamadi</div>;
 
   const links = [
     {
@@ -58,30 +59,30 @@ export default function BusinessPage({ params }: { params: Promise<{ slug: strin
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="flex items-center gap-3">
         <Link href="/dashboard">
-          <Button variant="ghost" size="icon" className="h-9 w-9">
+          <Button variant="ghost" size="icon" className="h-10 w-10">
             <ArrowLeft className="h-5 w-5" />
           </Button>
         </Link>
         <div>
-          <h1 className="text-2xl font-bold">{business.name}</h1>
-          <p className="text-sm text-muted-foreground">/{business.slug}</p>
+          <h1 className="text-3xl font-bold tracking-tight">{business.name}</h1>
+          <p className="text-base text-muted-foreground mt-0.5">/{business.slug}</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         {links.map((link) => (
           <Link key={link.href} href={link.href}>
             <Card className="hover:bg-gray-50/50 transition-colors cursor-pointer h-full">
-              <CardContent className="p-4 flex items-center gap-4">
-                <div className="p-2 bg-gray-100 rounded-lg">
-                  <link.icon className="h-5 w-5 text-gray-600" />
+              <CardContent className="p-6 flex items-center gap-5">
+                <div className="p-3 bg-gray-100 rounded-xl shrink-0">
+                  <link.icon className="h-6 w-6 text-gray-700" />
                 </div>
                 <div>
-                  <p className="font-medium text-sm">{link.label}</p>
-                  <p className="text-xs text-muted-foreground">{link.desc}</p>
+                  <p className="text-base font-semibold">{link.label}</p>
+                  <p className="text-sm text-muted-foreground mt-0.5">{link.desc}</p>
                 </div>
               </CardContent>
             </Card>
@@ -90,7 +91,7 @@ export default function BusinessPage({ params }: { params: Promise<{ slug: strin
       </div>
 
       <a href={`${API_URL}/public/${slug}`} target="_blank" rel="noopener noreferrer">
-        <Button variant="outline" className="mt-2">
+        <Button variant="outline" className="h-10">
           <ExternalLink className="mr-2 h-4 w-4" />
           Public API Endpoint
         </Button>

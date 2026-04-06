@@ -44,18 +44,18 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <Card className="w-full max-w-sm">
-        <CardHeader className="text-center">
-          <div className="text-sm tracking-[4px] text-muted-foreground font-medium mb-2">
+      <Card className="w-full max-w-md shadow-lg">
+        <CardHeader className="text-center pb-6">
+          <div className="text-sm tracking-[3px] text-muted-foreground font-semibold mb-3">
             VEXLOFT
           </div>
-          <CardTitle className="text-2xl">Panel</CardTitle>
-          <CardDescription>Hesabiniza giris yapin</CardDescription>
+          <CardTitle className="text-2xl font-bold">Panel</CardTitle>
+          <CardDescription className="text-base mt-1">Hesabiniza giris yapin</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="text-sm font-medium">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -63,10 +63,11 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                className="h-11"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Sifre</Label>
+              <Label htmlFor="password" className="text-sm font-medium">Sifre</Label>
               <Input
                 id="password"
                 type="password"
@@ -74,12 +75,13 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                className="h-11"
               />
             </div>
             {error && (
               <div className="text-sm text-red-500 text-center">{error}</div>
             )}
-            <Button type="submit" className="w-full" disabled={loading}>
+            <Button type="submit" className="w-full h-11 text-base" disabled={loading}>
               {loading ? (
                 "Giris yapiliyor..."
               ) : (

@@ -41,20 +41,22 @@ export function Sidebar() {
   const filteredNav = mainNav.filter((item) => !item.adminOnly || isAdmin);
 
   return (
-    <aside className="hidden md:flex w-[220px] flex-col border-r bg-gray-50/50 h-screen sticky top-0">
+    <aside className="hidden md:flex w-[260px] flex-col border-r bg-gray-50/50 h-screen sticky top-0">
       {/* Logo */}
-      <div className="p-4 border-b">
+      <div className="px-5 py-5 border-b">
         <Link
           href="/dashboard"
-          className="flex items-center gap-2 hover:opacity-70 transition-opacity"
+          className="flex items-center gap-2.5 hover:opacity-75 transition-opacity"
         >
-          <span className="font-bold text-base">Vexloft</span>
-          <span className="text-xs text-muted-foreground">Panel</span>
+          {/* Colored accent bar */}
+          <span className="inline-block w-1 h-5 rounded-full bg-foreground shrink-0" />
+          <span className="font-bold text-lg tracking-tight">Vexloft</span>
+          <span className="text-sm text-muted-foreground font-medium">Panel</span>
         </Link>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-2 space-y-1">
+      <nav className="flex-1 p-3 space-y-1">
         {filteredNav.map((item) => {
           const isActive =
             pathname === item.href || pathname.startsWith(item.href + "/");
@@ -63,13 +65,13 @@ export function Sidebar() {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors",
+                "flex items-center gap-3 px-4 py-2.5 rounded-md text-sm font-medium transition-colors",
                 isActive
-                  ? "bg-gray-100 text-foreground font-medium"
+                  ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:bg-gray-100 hover:text-foreground"
               )}
             >
-              <item.icon className="h-4 w-4" />
+              <item.icon className="h-5 w-5 shrink-0" />
               {item.label}
             </Link>
           );
@@ -78,9 +80,9 @@ export function Sidebar() {
 
       <Separator />
 
-      {/* User */}
-      <div className="p-3">
-        <div className="flex items-center justify-between">
+      {/* User section */}
+      <div className="p-4">
+        <div className="flex items-center justify-between gap-2">
           <div className="min-w-0">
             <p className="text-sm font-medium truncate">{user?.name}</p>
             <p className="text-xs text-muted-foreground truncate mt-0.5">{user?.email}</p>

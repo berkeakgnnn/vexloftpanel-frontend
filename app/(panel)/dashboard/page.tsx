@@ -41,11 +41,11 @@ export default function DashboardPage() {
   if (authLoading || isLoading) {
     return (
       <div className="space-y-6">
-        <Skeleton className="h-8 w-48" />
+        <Skeleton className="h-10 w-48" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Skeleton className="h-24" />
-          <Skeleton className="h-24" />
-          <Skeleton className="h-24" />
+          <Skeleton className="h-28" />
+          <Skeleton className="h-28" />
+          <Skeleton className="h-28" />
         </div>
         <Skeleton className="h-64" />
       </div>
@@ -68,17 +68,17 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Dashboard</h1>
-          <p className="text-sm text-muted-foreground mt-1">
+          <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+          <p className="text-base text-muted-foreground mt-1">
             {businesses?.length || 0} aktif isletme
           </p>
         </div>
         {isAdmin && (
           <Link href="/businesses/new">
-            <Button>
+            <Button size="default" className="h-10 px-5">
               <Plus className="mr-2 h-4 w-4" />
               Yeni Isletme
             </Button>
@@ -87,37 +87,37 @@ export default function DashboardPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
-          <CardContent className="p-4 flex items-center gap-4">
-            <div className="p-2 bg-gray-100 rounded-lg">
-              <Store className="h-5 w-5 text-gray-600" />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <Card className="border-t-2 border-t-foreground">
+          <CardContent className="p-5 flex items-center gap-5">
+            <div className="p-3 bg-gray-100 rounded-xl">
+              <Store className="h-6 w-6 text-gray-700" />
             </div>
             <div>
-              <p className="text-2xl font-bold">{businesses?.length || 0}</p>
-              <p className="text-sm text-muted-foreground">Toplam Isletme</p>
+              <p className="text-3xl font-bold">{businesses?.length || 0}</p>
+              <p className="text-sm text-muted-foreground font-medium mt-0.5">Toplam Isletme</p>
             </div>
           </CardContent>
         </Card>
-        <Card>
-          <CardContent className="p-4 flex items-center gap-4">
-            <div className="p-2 bg-gray-100 rounded-lg">
-              <FolderOpen className="h-5 w-5 text-gray-600" />
+        <Card className="border-t-2 border-t-foreground">
+          <CardContent className="p-5 flex items-center gap-5">
+            <div className="p-3 bg-gray-100 rounded-xl">
+              <FolderOpen className="h-6 w-6 text-gray-700" />
             </div>
             <div>
-              <p className="text-2xl font-bold">{totalCategories}</p>
-              <p className="text-sm text-muted-foreground">Toplam Kategori</p>
+              <p className="text-3xl font-bold">{totalCategories}</p>
+              <p className="text-sm text-muted-foreground font-medium mt-0.5">Toplam Kategori</p>
             </div>
           </CardContent>
         </Card>
-        <Card>
-          <CardContent className="p-4 flex items-center gap-4">
-            <div className="p-2 bg-gray-100 rounded-lg">
-              <UtensilsCrossed className="h-5 w-5 text-gray-600" />
+        <Card className="border-t-2 border-t-foreground">
+          <CardContent className="p-5 flex items-center gap-5">
+            <div className="p-3 bg-gray-100 rounded-xl">
+              <UtensilsCrossed className="h-6 w-6 text-gray-700" />
             </div>
             <div>
-              <p className="text-2xl font-bold">{totalItems}</p>
-              <p className="text-sm text-muted-foreground">Toplam Urun</p>
+              <p className="text-3xl font-bold">{totalItems}</p>
+              <p className="text-sm text-muted-foreground font-medium mt-0.5">Toplam Urun</p>
             </div>
           </CardContent>
         </Card>
@@ -125,27 +125,27 @@ export default function DashboardPage() {
 
       {/* Business table */}
       <Card>
-        <CardHeader>
-          <CardTitle className="text-base">Isletmeler</CardTitle>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-lg">Isletmeler</CardTitle>
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full">
               <thead>
                 <tr className="border-b bg-gray-50/50">
-                  <th className="text-left p-3 font-medium text-muted-foreground">
+                  <th className="text-left p-4 text-sm font-semibold text-muted-foreground">
                     Isletme
                   </th>
-                  <th className="text-left p-3 font-medium text-muted-foreground">
+                  <th className="text-left p-4 text-sm font-semibold text-muted-foreground">
                     Sablon
                   </th>
-                  <th className="text-left p-3 font-medium text-muted-foreground">
+                  <th className="text-left p-4 text-sm font-semibold text-muted-foreground">
                     Durum
                   </th>
-                  <th className="text-left p-3 font-medium text-muted-foreground">
+                  <th className="text-left p-4 text-sm font-semibold text-muted-foreground">
                     Sahip
                   </th>
-                  <th className="p-3"></th>
+                  <th className="p-4"></th>
                 </tr>
               </thead>
               <tbody>
@@ -154,32 +154,37 @@ export default function DashboardPage() {
                     key={business.id}
                     className="border-b last:border-0 hover:bg-gray-50/50 transition-colors"
                   >
-                    <td className="p-3">
-                      <div className="font-medium">{business.name}</div>
-                      <div className="text-xs text-muted-foreground">
+                    <td className="p-4">
+                      <div className="text-base font-semibold">{business.name}</div>
+                      <div className="text-sm text-muted-foreground">
                         /{business.slug}
                       </div>
                     </td>
-                    <td className="p-3">
+                    <td className="p-4">
                       <span
-                        className={`text-xs px-2 py-0.5 rounded font-medium ${templateBadge(business.template)}`}
+                        className={`text-xs px-3 py-1 rounded-full font-semibold ${templateBadge(business.template)}`}
                       >
                         {business.template}
                       </span>
                     </td>
-                    <td className="p-3">
-                      <span
-                        className={`inline-block w-2 h-2 rounded-full ${
-                          business.isActive ? "bg-green-500" : "bg-gray-300"
-                        }`}
-                      />
+                    <td className="p-4">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={`inline-block w-2.5 h-2.5 rounded-full ${
+                            business.isActive ? "bg-green-500" : "bg-gray-300"
+                          }`}
+                        />
+                        <span className="text-sm text-muted-foreground">
+                          {business.isActive ? "Aktif" : "Pasif"}
+                        </span>
+                      </div>
                     </td>
-                    <td className="p-3 text-muted-foreground">
+                    <td className="p-4 text-sm text-muted-foreground">
                       {business.owner?.email}
                     </td>
-                    <td className="p-3 text-right">
+                    <td className="p-4 text-right">
                       <Link href={`/businesses/${business.slug}`}>
-                        <Button variant="ghost" size="sm">
+                        <Button variant="outline" size="sm" className="h-8 px-4 text-sm font-medium">
                           Yonet
                         </Button>
                       </Link>
