@@ -138,7 +138,13 @@ export function OnboardingWizard() {
         });
       }
 
-      // 4. Save business info (location, hours, tagline, phone)
+      // 4. Seed template data (categories + items with images)
+      await api(`/businesses/${businessSlug}/seed-template`, {
+        method: "POST",
+        body: JSON.stringify({ layoutType: layoutChoice ?? "FULLCARD" }),
+      });
+
+      // 5. Save business info (location, hours, tagline, phone)
       await api(`/businesses/${businessSlug}/info`, {
         method: "PUT",
         body: JSON.stringify({
