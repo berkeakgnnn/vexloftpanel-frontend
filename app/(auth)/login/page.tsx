@@ -44,7 +44,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#fafaff] px-4">
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="text-center pb-6">
           <div className="flex justify-center mb-4">
@@ -82,7 +82,11 @@ export default function LoginPage() {
             {error && (
               <div className="text-sm text-red-500 text-center">{error}</div>
             )}
-            <Button type="submit" className="w-full h-11 text-base" disabled={loading}>
+            <Button
+              type="submit"
+              className="w-full h-12 text-base bg-gradient-to-r from-indigo-700 to-indigo-500 hover:from-indigo-800 hover:to-indigo-600 text-white font-medium border-0"
+              disabled={loading}
+            >
               {loading ? (
                 "Giris yapiliyor..."
               ) : (

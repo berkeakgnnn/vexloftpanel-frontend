@@ -101,46 +101,49 @@ export default function NewBusinessPage() {
     <div className="space-y-6 max-w-2xl">
       <div className="flex items-center gap-3">
         <Link href="/dashboard">
-          <Button variant="ghost" size="icon" className="h-8 w-8">
-            <ArrowLeft className="h-4 w-4" />
+          <Button variant="ghost" size="icon" className="h-10 w-10">
+            <ArrowLeft className="h-5 w-5" />
           </Button>
         </Link>
         <div>
-          <h1 className="text-xl font-bold">Yeni Isletme</h1>
-          <p className="text-sm text-muted-foreground">Yeni sahip ve isletme olustur</p>
+          <h1 className="text-3xl font-bold tracking-tight">Yeni Isletme</h1>
+          <p className="text-base text-muted-foreground">Yeni sahip ve isletme olustur</p>
         </div>
       </div>
 
       {/* Owner section */}
       <Card>
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm">Sahip Bilgileri</CardTitle>
+          <CardTitle className="text-base font-semibold">Sahip Bilgileri</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-1.5">
-            <Label>Ad Soyad</Label>
+            <Label className="text-sm font-medium">Ad Soyad</Label>
             <Input
               value={owner.name}
               onChange={ownerField("name")}
               placeholder="Ahmet Yilmaz"
+              className="h-11"
             />
           </div>
           <div className="space-y-1.5">
-            <Label>E-posta</Label>
+            <Label className="text-sm font-medium">E-posta</Label>
             <Input
               type="email"
               value={owner.email}
               onChange={ownerField("email")}
               placeholder="ahmet@ornek.com"
+              className="h-11"
             />
           </div>
           <div className="space-y-1.5">
-            <Label>Sifre</Label>
+            <Label className="text-sm font-medium">Sifre</Label>
             <Input
               type="password"
               value={owner.password}
               onChange={ownerField("password")}
               placeholder="Guclu bir sifre girin"
+              className="h-11"
             />
           </div>
         </CardContent>
@@ -149,19 +152,20 @@ export default function NewBusinessPage() {
       {/* Business section */}
       <Card>
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm">Isletme Bilgileri</CardTitle>
+          <CardTitle className="text-base font-semibold">Isletme Bilgileri</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-1.5">
-            <Label>Isletme Adi</Label>
+            <Label className="text-sm font-medium">Isletme Adi</Label>
             <Input
               value={business.name}
               onChange={handleBusinessName}
               placeholder="Kafe Adim"
+              className="h-11"
             />
           </div>
           <div className="space-y-1.5">
-            <Label>Slug</Label>
+            <Label className="text-sm font-medium">Slug</Label>
             <Input
               value={business.slug}
               onChange={(e) =>
@@ -174,13 +178,14 @@ export default function NewBusinessPage() {
                 }))
               }
               placeholder="kafe-adim"
+              className="h-11"
             />
-            <p className="text-xs text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               Menu URL olarak kullanilir: /public/{business.slug || "kafe-adim"}
             </p>
           </div>
           <div className="space-y-1.5">
-            <Label>Sablon</Label>
+            <Label className="text-sm font-medium">Sablon</Label>
             <Select
               value={business.template}
               onValueChange={(v) => {
@@ -188,7 +193,7 @@ export default function NewBusinessPage() {
                 if (v) setBusiness((f) => ({ ...f, template: v }));
               }}
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full h-11">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -204,7 +209,11 @@ export default function NewBusinessPage() {
       </Card>
 
       <div className="flex justify-end">
-        <Button onClick={handleSubmit} disabled={loading || !isValid}>
+        <Button
+          onClick={handleSubmit}
+          disabled={loading || !isValid}
+          className="h-11 px-6 text-base bg-gradient-to-r from-indigo-700 to-indigo-500 hover:from-indigo-800 hover:to-indigo-600 text-white border-0"
+        >
           {loading ? (
             <>
               <Loader2 className="h-4 w-4 mr-1.5 animate-spin" />

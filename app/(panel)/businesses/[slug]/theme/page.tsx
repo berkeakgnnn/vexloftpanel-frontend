@@ -675,7 +675,7 @@ export default function ThemePage() {
                       >
                         {opt.label}
                       </p>
-                      <p className="text-[11px] text-muted-foreground mt-0.5 leading-tight">
+                      <p className="text-sm text-muted-foreground mt-0.5 leading-tight">
                         {opt.desc}
                       </p>
                     </button>

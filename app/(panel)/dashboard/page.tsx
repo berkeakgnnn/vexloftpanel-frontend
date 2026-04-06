@@ -78,7 +78,10 @@ export default function DashboardPage() {
         </div>
         {isAdmin && (
           <Link href="/businesses/new">
-            <Button size="default" className="h-10 px-5">
+            <Button
+              size="default"
+              className="h-11 px-5 bg-gradient-to-r from-indigo-700 to-indigo-500 hover:from-indigo-800 hover:to-indigo-600 text-white border-0"
+            >
               <Plus className="mr-2 h-4 w-4" />
               Yeni Isletme
             </Button>
@@ -88,10 +91,10 @@ export default function DashboardPage() {
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <Card className="border-t-2 border-t-foreground">
+        <Card className="border-t-2 border-t-indigo-500">
           <CardContent className="p-5 flex items-center gap-5">
-            <div className="p-3 bg-gray-100 rounded-xl">
-              <Store className="h-6 w-6 text-gray-700" />
+            <div className="p-3 bg-indigo-50 rounded-xl">
+              <Store className="h-6 w-6 text-indigo-600" />
             </div>
             <div>
               <p className="text-3xl font-bold">{businesses?.length || 0}</p>
@@ -99,10 +102,10 @@ export default function DashboardPage() {
             </div>
           </CardContent>
         </Card>
-        <Card className="border-t-2 border-t-foreground">
+        <Card className="border-t-2 border-t-indigo-500">
           <CardContent className="p-5 flex items-center gap-5">
-            <div className="p-3 bg-gray-100 rounded-xl">
-              <FolderOpen className="h-6 w-6 text-gray-700" />
+            <div className="p-3 bg-indigo-50 rounded-xl">
+              <FolderOpen className="h-6 w-6 text-indigo-600" />
             </div>
             <div>
               <p className="text-3xl font-bold">{totalCategories}</p>
@@ -110,10 +113,10 @@ export default function DashboardPage() {
             </div>
           </CardContent>
         </Card>
-        <Card className="border-t-2 border-t-foreground">
+        <Card className="border-t-2 border-t-indigo-500">
           <CardContent className="p-5 flex items-center gap-5">
-            <div className="p-3 bg-gray-100 rounded-xl">
-              <UtensilsCrossed className="h-6 w-6 text-gray-700" />
+            <div className="p-3 bg-indigo-50 rounded-xl">
+              <UtensilsCrossed className="h-6 w-6 text-indigo-600" />
             </div>
             <div>
               <p className="text-3xl font-bold">{totalItems}</p>
@@ -162,7 +165,7 @@ export default function DashboardPage() {
                     </td>
                     <td className="p-4">
                       <span
-                        className={`text-xs px-3 py-1 rounded-full font-semibold ${templateBadge(business.template)}`}
+                        className={`text-sm px-3 py-1 rounded-full font-semibold ${templateBadge(business.template)}`}
                       >
                         {business.template}
                       </span>
@@ -184,7 +187,11 @@ export default function DashboardPage() {
                     </td>
                     <td className="p-4 text-right">
                       <Link href={`/businesses/${business.slug}`}>
-                        <Button variant="outline" size="sm" className="h-8 px-4 text-sm font-medium">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-9 px-4 text-sm font-medium text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50"
+                        >
                           Yonet
                         </Button>
                       </Link>
