@@ -1,0 +1,299 @@
+<h2>Vexloft Panel — Dashboard + Tema Editörü</h2>
+<p class="subtitle">Minimal beyaz tema, sidebar layout, shadcn/ui</p>
+
+<!-- Dashboard mockup -->
+<div class="mockup">
+  <div class="mockup-header">Admin Dashboard — İşletme Listesi</div>
+  <div class="mockup-body" style="padding:0;">
+    <div style="display:flex;min-height:500px;font-family:system-ui;font-size:13px;">
+
+      <!-- Sidebar -->
+      <div style="width:220px;background:#fafafa;border-right:1px solid #e5e5e5;padding:20px 0;flex-shrink:0;display:flex;flex-direction:column;">
+        <div style="padding:0 16px 20px;border-bottom:1px solid #e5e5e5;">
+          <div style="font-size:15px;font-weight:700;color:#111;">Vexloft</div>
+          <div style="font-size:10px;color:#888;margin-top:2px;">Panel</div>
+        </div>
+        <div style="padding:12px 0;flex:1;">
+          <div style="padding:8px 16px;background:#f0f0f0;border-right:2px solid #111;font-weight:600;color:#111;font-size:12px;">Dashboard</div>
+          <div style="padding:8px 16px;color:#888;font-size:12px;">İşletmeler</div>
+          <div style="padding:8px 16px;color:#888;font-size:12px;">Kullanıcılar</div>
+        </div>
+        <div style="padding:12px 16px;border-top:1px solid #e5e5e5;">
+          <div style="font-size:11px;color:#111;font-weight:500;">Berke</div>
+          <div style="font-size:10px;color:#888;">admin@vexloft.com</div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div style="flex:1;background:#fff;padding:28px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+          <div>
+            <div style="font-size:20px;font-weight:700;color:#111;">Dashboard</div>
+            <div style="font-size:12px;color:#888;margin-top:4px;">3 aktif işletme</div>
+          </div>
+          <div style="background:#111;color:#fff;padding:8px 16px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;">+ Yeni İşletme</div>
+        </div>
+
+        <!-- Stats -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:24px;">
+          <div style="border:1px solid #e5e5e5;border-radius:8px;padding:16px;">
+            <div style="font-size:11px;color:#888;">Toplam İşletme</div>
+            <div style="font-size:24px;font-weight:700;color:#111;margin-top:4px;">3</div>
+          </div>
+          <div style="border:1px solid #e5e5e5;border-radius:8px;padding:16px;">
+            <div style="font-size:11px;color:#888;">Aktif Menü</div>
+            <div style="font-size:24px;font-weight:700;color:#111;margin-top:4px;">3</div>
+          </div>
+          <div style="border:1px solid #e5e5e5;border-radius:8px;padding:16px;">
+            <div style="font-size:11px;color:#888;">Toplam Ürün</div>
+            <div style="font-size:24px;font-weight:700;color:#111;margin-top:4px;">47</div>
+          </div>
+        </div>
+
+        <!-- Business list -->
+        <div style="border:1px solid #e5e5e5;border-radius:8px;overflow:hidden;">
+          <div style="padding:12px 16px;background:#fafafa;border-bottom:1px solid #e5e5e5;display:flex;gap:100px;">
+            <div style="font-size:11px;color:#888;font-weight:600;width:180px;">İşletme</div>
+            <div style="font-size:11px;color:#888;font-weight:600;width:80px;">Şablon</div>
+            <div style="font-size:11px;color:#888;font-weight:600;width:60px;">Durum</div>
+            <div style="font-size:11px;color:#888;font-weight:600;">Sahip</div>
+          </div>
+          <!-- Row 1 -->
+          <div style="padding:12px 16px;border-bottom:1px solid #f0f0f0;display:flex;gap:100px;align-items:center;">
+            <div style="width:180px;">
+              <div style="font-size:13px;font-weight:600;color:#111;">The Cozy Bean</div>
+              <div style="font-size:10px;color:#888;">/the-cozy-bean</div>
+            </div>
+            <div style="width:80px;"><span style="font-size:10px;padding:2px 8px;background:#f0e8da;color:#8d6346;border-radius:4px;">Cafe</span></div>
+            <div style="width:60px;"><span style="width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;"></span></div>
+            <div style="font-size:12px;color:#666;">admin@vexloft.com</div>
+          </div>
+          <!-- Row 2 -->
+          <div style="padding:12px 16px;border-bottom:1px solid #f0f0f0;display:flex;gap:100px;align-items:center;">
+            <div style="width:180px;">
+              <div style="font-size:13px;font-weight:600;color:#111;">Maison Élégante</div>
+              <div style="font-size:10px;color:#888;">/maison-elegante</div>
+            </div>
+            <div style="width:80px;"><span style="font-size:10px;padding:2px 8px;background:#1a1a1a;color:#c9a96e;border-radius:4px;">Restoran</span></div>
+            <div style="width:60px;"><span style="width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;"></span></div>
+            <div style="font-size:12px;color:#666;">admin@vexloft.com</div>
+          </div>
+          <!-- Row 3 -->
+          <div style="padding:12px 16px;display:flex;gap:100px;align-items:center;">
+            <div style="width:180px;">
+              <div style="font-size:13px;font-weight:600;color:#111;">The Black Sheep</div>
+              <div style="font-size:10px;color:#888;">/the-black-sheep</div>
+            </div>
+            <div style="width:80px;"><span style="font-size:10px;padding:2px 8px;background:#231e1a;color:#d4a04a;border-radius:4px;">Pub</span></div>
+            <div style="width:60px;"><span style="width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;"></span></div>
+            <div style="font-size:12px;color:#666;">admin@vexloft.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Theme Editor mockup -->
+<div class="mockup" style="margin-top:20px;">
+  <div class="mockup-header">Tema Editörü — Canlı Preview</div>
+  <div class="mockup-body" style="padding:0;">
+    <div style="display:flex;min-height:500px;font-family:system-ui;font-size:13px;">
+
+      <!-- Sidebar (same) -->
+      <div style="width:180px;background:#fafafa;border-right:1px solid #e5e5e5;padding:20px 0;flex-shrink:0;">
+        <div style="padding:0 12px 16px;border-bottom:1px solid #e5e5e5;">
+          <div style="font-size:14px;font-weight:700;color:#111;">Vexloft</div>
+        </div>
+        <div style="padding:8px 0;">
+          <div style="padding:6px 12px;color:#888;font-size:11px;">Dashboard</div>
+          <div style="padding:6px 12px;color:#888;font-size:11px;">The Cozy Bean</div>
+          <div style="padding:6px 12px 6px 24px;color:#888;font-size:11px;">Menü</div>
+          <div style="padding:6px 12px 6px 24px;background:#f0f0f0;border-right:2px solid #111;font-weight:600;color:#111;font-size:11px;">Tema</div>
+          <div style="padding:6px 12px 6px 24px;color:#888;font-size:11px;">Bilgiler</div>
+          <div style="padding:6px 12px 6px 24px;color:#888;font-size:11px;">Ayarlar</div>
+        </div>
+      </div>
+
+      <!-- Theme settings panel -->
+      <div style="width:280px;background:#fff;border-right:1px solid #e5e5e5;padding:20px;overflow-y:auto;">
+        <div style="font-size:16px;font-weight:700;color:#111;margin-bottom:16px;">Tema Ayarları</div>
+
+        <!-- Colors -->
+        <div style="margin-bottom:16px;">
+          <div style="font-size:11px;color:#888;font-weight:600;margin-bottom:8px;">RENKLER</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:#444;">Arka Plan</span>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <div style="width:24px;height:24px;border-radius:4px;background:#faf6f0;border:1px solid #ddd;"></div>
+                <span style="font-size:10px;color:#888;">#faf6f0</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:#444;">Ana Renk</span>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <div style="width:24px;height:24px;border-radius:4px;background:#3e2723;"></div>
+                <span style="font-size:10px;color:#888;">#3e2723</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:#444;">Vurgu Renk</span>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <div style="width:24px;height:24px;border-radius:4px;background:#8d6346;"></div>
+                <span style="font-size:10px;color:#888;">#8d6346</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fonts -->
+        <div style="margin-bottom:16px;">
+          <div style="font-size:11px;color:#888;font-weight:600;margin-bottom:8px;">FONTLAR</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div>
+              <div style="font-size:11px;color:#444;margin-bottom:3px;">Başlık Fontu</div>
+              <div style="border:1px solid #e5e5e5;border-radius:6px;padding:6px 10px;font-size:12px;color:#111;">Playfair Display</div>
+            </div>
+            <div>
+              <div style="font-size:11px;color:#444;margin-bottom:3px;">Body Fontu</div>
+              <div style="border:1px solid #e5e5e5;border-radius:6px;padding:6px 10px;font-size:12px;color:#111;">Inter</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Layout -->
+        <div style="margin-bottom:16px;">
+          <div style="font-size:11px;color:#888;font-weight:600;margin-bottom:8px;">LAYOUT</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+            <div style="border:2px solid #111;border-radius:6px;padding:8px;text-align:center;font-size:10px;color:#111;font-weight:600;">Full Card</div>
+            <div style="border:1px solid #e5e5e5;border-radius:6px;padding:8px;text-align:center;font-size:10px;color:#888;">List</div>
+            <div style="border:1px solid #e5e5e5;border-radius:6px;padding:8px;text-align:center;font-size:10px;color:#888;">Grid</div>
+            <div style="border:1px solid #e5e5e5;border-radius:6px;padding:8px;text-align:center;font-size:10px;color:#888;">Hybrid</div>
+          </div>
+        </div>
+
+        <div style="background:#111;color:#fff;padding:10px;border-radius:6px;text-align:center;font-size:12px;font-weight:500;cursor:pointer;">Kaydet</div>
+      </div>
+
+      <!-- Live Preview -->
+      <div style="flex:1;background:#f5f5f5;padding:16px;display:flex;flex-direction:column;">
+        <div style="font-size:11px;color:#888;margin-bottom:8px;text-align:center;">CANLI PREVIEW</div>
+        <div style="flex:1;background:#faf6f0;border-radius:12px;overflow:hidden;max-width:320px;margin:0 auto;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+          <!-- Mini menu preview -->
+          <div style="height:80px;background:linear-gradient(135deg,#3e2723,#5d4037);display:flex;align-items:center;justify-content:center;">
+            <div style="color:#f5efe6;font-size:16px;font-family:Georgia,serif;font-style:italic;">The Cozy Bean</div>
+          </div>
+          <div style="padding:12px;">
+            <div style="font-size:8px;letter-spacing:2px;color:#8d6346;font-weight:600;">ESPRESSO BAZLI</div>
+            <div style="margin-top:8px;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+              <div style="height:60px;background:#d4c4b0;"></div>
+              <div style="padding:8px;">
+                <div style="display:flex;justify-content:space-between;">
+                  <div style="font-size:11px;font-weight:600;color:#2c1810;">Cappuccino</div>
+                  <div style="font-size:11px;color:#8d6346;font-weight:600;">₺85</div>
+                </div>
+                <div style="font-size:8px;color:#8d7b6a;margin-top:2px;">Espresso, süt, köpük</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Menu Management mockup -->
+<div class="mockup" style="margin-top:20px;">
+  <div class="mockup-header">Menü Yönetimi — Kategoriler + Ürünler</div>
+  <div class="mockup-body" style="padding:0;">
+    <div style="display:flex;min-height:400px;font-family:system-ui;font-size:13px;">
+
+      <!-- Sidebar (collapsed) -->
+      <div style="width:180px;background:#fafafa;border-right:1px solid #e5e5e5;padding:20px 0;flex-shrink:0;">
+        <div style="padding:0 12px 16px;border-bottom:1px solid #e5e5e5;">
+          <div style="font-size:14px;font-weight:700;color:#111;">Vexloft</div>
+        </div>
+        <div style="padding:8px 0;">
+          <div style="padding:6px 12px;color:#888;font-size:11px;">Dashboard</div>
+          <div style="padding:6px 12px;color:#888;font-size:11px;">The Cozy Bean</div>
+          <div style="padding:6px 12px 6px 24px;background:#f0f0f0;border-right:2px solid #111;font-weight:600;color:#111;font-size:11px;">Menü</div>
+          <div style="padding:6px 12px 6px 24px;color:#888;font-size:11px;">Tema</div>
+          <div style="padding:6px 12px 6px 24px;color:#888;font-size:11px;">Bilgiler</div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div style="flex:1;background:#fff;padding:24px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <div style="font-size:18px;font-weight:700;color:#111;">Menü Yönetimi</div>
+          <div style="background:#111;color:#fff;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:500;">+ Kategori Ekle</div>
+        </div>
+
+        <!-- Category 1 -->
+        <div style="border:1px solid #e5e5e5;border-radius:8px;margin-bottom:12px;overflow:hidden;">
+          <div style="padding:12px 16px;background:#fafafa;border-bottom:1px solid #e5e5e5;display:flex;justify-content:space-between;align-items:center;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="color:#ccc;cursor:grab;">&#8801;</div>
+              <div style="font-size:13px;font-weight:600;color:#111;">Espresso Bazlı</div>
+              <span style="font-size:10px;color:#888;background:#f0f0f0;padding:1px 6px;border-radius:3px;">3 ürün</span>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <span style="font-size:11px;color:#888;cursor:pointer;">Düzenle</span>
+              <span style="font-size:11px;color:#ef4444;cursor:pointer;">Sil</span>
+            </div>
+          </div>
+          <!-- Items -->
+          <div style="padding:8px 16px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f5f5f5;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="color:#ddd;cursor:grab;">&#8801;</div>
+                <div style="width:36px;height:36px;background:#f0e8da;border-radius:6px;"></div>
+                <div>
+                  <div style="font-size:12px;font-weight:500;color:#111;">Cappuccino</div>
+                  <div style="font-size:10px;color:#888;">Espresso, süt, köpük</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="font-size:13px;font-weight:600;color:#111;">₺85</div>
+                <span style="font-size:11px;color:#888;cursor:pointer;">Düzenle</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f5f5f5;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="color:#ddd;cursor:grab;">&#8801;</div>
+                <div style="width:36px;height:36px;background:#f0e8da;border-radius:6px;"></div>
+                <div>
+                  <div style="font-size:12px;font-weight:500;color:#111;">Latte</div>
+                  <div style="font-size:10px;color:#888;">Double shot, kremamsı süt</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="font-size:13px;font-weight:600;color:#111;">₺90</div>
+                <span style="font-size:11px;color:#888;cursor:pointer;">Düzenle</span>
+              </div>
+            </div>
+            <div style="padding:8px 0;text-align:center;">
+              <span style="font-size:11px;color:#888;cursor:pointer;">+ Ürün Ekle</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 2 -->
+        <div style="border:1px solid #e5e5e5;border-radius:8px;overflow:hidden;">
+          <div style="padding:12px 16px;background:#fafafa;border-bottom:1px solid #e5e5e5;display:flex;justify-content:space-between;align-items:center;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="color:#ccc;cursor:grab;">&#8801;</div>
+              <div style="font-size:13px;font-weight:600;color:#111;">Soğuk Kahveler</div>
+              <span style="font-size:10px;color:#888;background:#f0f0f0;padding:1px 6px;border-radius:3px;">2 ürün</span>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <span style="font-size:11px;color:#888;cursor:pointer;">Düzenle</span>
+              <span style="font-size:11px;color:#ef4444;cursor:pointer;">Sil</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
