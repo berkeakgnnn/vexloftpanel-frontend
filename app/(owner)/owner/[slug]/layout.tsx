@@ -14,7 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ExternalLink, LogOut, User } from "lucide-react";
+import { ExternalLink, LogOut, User, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Tab {
@@ -44,8 +44,15 @@ function OwnerHeader({ slug }: { slug: string }) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Top row */}
         <div className="flex items-center justify-between h-14 gap-4">
-          {/* Left: logo + business name */}
+          {/* Left: back button (admin only) + logo + business name */}
           <div className="flex items-center gap-2.5 min-w-0">
+            {user?.role === "ADMIN" && (
+              <Link href="/dashboard">
+                <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0">
+                  <ArrowLeft className="h-4 w-4" />
+                </Button>
+              </Link>
+            )}
             <LogoIcon className="h-6 w-6 text-indigo-600 shrink-0" />
             <span className="font-bold text-lg text-gray-900 truncate">
               {business?.name ?? "Yükleniyor..."}
