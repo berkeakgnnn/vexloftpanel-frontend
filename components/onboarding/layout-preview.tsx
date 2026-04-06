@@ -305,7 +305,7 @@ function PhoneContent({
             letterSpacing: "0.05em",
           }}
         >
-          MENUIMUZ
+          MENUMUZ
         </div>
       </div>
 

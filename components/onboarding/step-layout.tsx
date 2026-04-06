@@ -27,7 +27,7 @@ export function StepLayout({ value, onChange }: StepLayoutProps) {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 gap-4">
         {LAYOUT_OPTIONS.map((option) => {
           const isSelected = value === option.id;
           const Icon = LAYOUT_ICONS[option.id];
@@ -42,7 +42,7 @@ export function StepLayout({ value, onChange }: StepLayoutProps) {
                   ? "border-indigo-500 ring-2 ring-indigo-500 bg-indigo-50/50 shadow-lg"
                   : "border-border hover:shadow-md bg-card"
               )}
-              style={{ minHeight: 130, maxHeight: 150 }}
+              style={{ minHeight: 160 }}
             >
               {/* Selected indicator */}
               {isSelected && (

@@ -23,7 +23,7 @@ export function StepTheme({ value, onChange, layoutChoice: _layoutChoice }: Step
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
         {THEME_PRESETS.map((preset) => {
           const isSelected = value?.id === preset.id;
           return (
@@ -37,7 +37,7 @@ export function StepTheme({ value, onChange, layoutChoice: _layoutChoice }: Step
                   ? "border-indigo-500 ring-2 ring-indigo-500 shadow-lg"
                   : "border-border hover:shadow-md bg-card"
               )}
-              style={{ minHeight: 140, maxHeight: 160 }}
+              style={{ minHeight: 180 }}
             >
               {/* Selected badge */}
               {isSelected && (
