@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { Logo } from "@/components/logo";
 import { LayoutDashboard, Store, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -49,7 +49,7 @@ export function Sidebar() {
           href="/dashboard"
           className="flex items-center gap-2.5 hover:opacity-75 transition-opacity"
         >
-          <Image src="/logo.svg" alt="Vexloft" width={120} height={28} priority />
+          <Logo />
         </Link>
       </div>
 

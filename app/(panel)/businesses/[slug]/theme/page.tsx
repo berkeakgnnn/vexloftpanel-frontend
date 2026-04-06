@@ -233,20 +233,114 @@ export default function ThemePage() {
         <div className="flex-1 min-h-[500px]">
           <Card className="h-full">
             <CardHeader className="pb-2">
-              <CardTitle className="text-base font-semibold">Onizleme</CardTitle>
+              <CardTitle className="text-base font-semibold">Canli Onizleme</CardTitle>
             </CardHeader>
-            <CardContent className="p-0 h-[calc(100%-52px)]">
-              {API_URL ? (
-                <iframe
-                  src={previewUrl}
-                  title="Menu Onizleme"
-                  className="w-full h-full rounded-b-xl border-0 min-h-[500px]"
-                />
-              ) : (
-                <div className="flex items-center justify-center h-full text-sm text-muted-foreground p-6">
-                  NEXT_PUBLIC_API_URL ayarlanmamis. Onizleme gorunemez.
+            <CardContent className="flex items-center justify-center p-6 h-[calc(100%-52px)]">
+              {/* Phone frame */}
+              <div className="w-[320px] h-[580px] rounded-[2rem] border-[6px] border-gray-800 overflow-hidden shadow-2xl bg-white">
+                <div
+                  className="h-full overflow-y-auto"
+                  style={{ backgroundColor: (form.bgColor as string) || "#faf6f0" }}
+                >
+                  {/* Mini hero */}
+                  <div
+                    className="h-[120px] flex flex-col items-center justify-center text-center relative"
+                    style={{ backgroundColor: (form.primaryColor as string) || "#3e2723" }}
+                  >
+                    <span
+                      className="text-[9px] tracking-[3px] opacity-70"
+                      style={{ color: (form.bgColor as string) || "#faf6f0" }}
+                    >
+                      MENU
+                    </span>
+                    <span
+                      className="text-[20px] mt-1"
+                      style={{
+                        color: (form.bgColor as string) || "#faf6f0",
+                        fontFamily: (form.fontHeading as string) || "serif",
+                        fontStyle: "italic",
+                      }}
+                    >
+                      Isletme Adi
+                    </span>
+                  </div>
+
+                  {/* Category label */}
+                  <div className="px-4 pt-4 pb-2">
+                    <span
+                      className="text-[9px] tracking-[2px] font-semibold uppercase"
+                      style={{ color: (form.accentColor as string) || "#8d6346" }}
+                    >
+                      Kategori
+                    </span>
+                    <div
+                      className="w-5 h-0.5 mt-1 rounded"
+                      style={{ backgroundColor: (form.accentColor as string) || "#8d6346" }}
+                    />
+                  </div>
+
+                  {/* Sample cards */}
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="px-4 pb-2">
+                      <div
+                        className="rounded-xl overflow-hidden shadow-sm"
+                        style={{
+                          backgroundColor: (form.cardBgColor as string) || "#ffffff",
+                          borderColor: (form.borderColor as string) || "#e8dcc8",
+                          borderWidth: "1px",
+                        }}
+                      >
+                        <div
+                          className="h-[80px]"
+                          style={{
+                            backgroundColor: (form.primaryColor as string) || "#3e2723",
+                            opacity: 0.15 + i * 0.1,
+                          }}
+                        />
+                        <div className="p-3">
+                          <div className="flex justify-between items-center">
+                            <span
+                              className="text-[13px] font-bold"
+                              style={{
+                                color: (form.textColor as string) || "#2c1810",
+                                fontFamily: (form.fontHeading as string) || "serif",
+                              }}
+                            >
+                              Urun Adi {i}
+                            </span>
+                            <span
+                              className="text-[13px] font-bold"
+                              style={{
+                                color: (form.accentColor as string) || "#8d6346",
+                                fontFamily: (form.fontBody as string) || "sans-serif",
+                              }}
+                            >
+                              ₺{80 + i * 10}
+                            </span>
+                          </div>
+                          <p
+                            className="text-[10px] mt-1"
+                            style={{
+                              color: (form.mutedTextColor as string) || "#8d7b6a",
+                              fontFamily: (form.fontBody as string) || "sans-serif",
+                            }}
+                          >
+                            Urun aciklamasi burada yer alir
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* Footer */}
+                  <div
+                    className="mt-2 py-4 text-center"
+                    style={{ backgroundColor: (form.primaryColor as string) || "#3e2723", opacity: 0.1 }}
+                  >
+                    <span className="text-[8px] opacity-50">Vexloft Studio</span>
+                  </div>
                 </div>
-              )}
+              </div>
             </CardContent>
           </Card>
         </div>

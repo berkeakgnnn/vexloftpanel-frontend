@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import Image from "next/image";
+import { Logo } from "@/components/logo";
 import { login } from "@/lib/auth";
 import { LogIn } from "lucide-react";
 
@@ -48,7 +48,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="text-center pb-6">
           <div className="flex justify-center mb-4">
-            <Image src="/logo.svg" alt="Vexloft" width={140} height={32} priority />
+            <Logo size="large" />
           </div>
           <CardTitle className="text-2xl font-bold">Panel</CardTitle>
           <CardDescription className="text-base mt-1">Hesabiniza giris yapin</CardDescription>
