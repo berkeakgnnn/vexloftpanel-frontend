@@ -2,7 +2,7 @@
 
 import { Check } from "lucide-react";
 
-const STEPS = ["Gorunum", "Tema", "Bilgiler", "Tamamlandi"];
+const STEPS = ["Tur", "Gorunum", "Tema", "Bilgiler", "Tamamlandi"];
 
 export function ProgressBar({ currentStep }: { currentStep: number }) {
   return (

@@ -8,11 +8,13 @@ import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { api } from "@/lib/api";
 import { ProgressBar } from "./progress-bar";
 import { LayoutPreview } from "./layout-preview";
+import { StepBusinessType } from "./step-business-type";
 import { StepLayout } from "./step-layout";
 import { StepTheme } from "./step-theme";
 import { StepInfo } from "./step-info";
 import { StepComplete } from "./step-complete";
 import type { LayoutChoice, ThemePreset } from "./theme-presets";
+import type { BusinessType } from "./step-business-type";
 import type { BusinessInfo, OwnerInfo } from "./step-info";
 
 function slugify(name: string): string {
@@ -60,6 +62,7 @@ export function OnboardingWizard() {
   const router = useRouter();
 
   const [step, setStep] = useState(0);
+  const [businessType, setBusinessType] = useState<BusinessType | null>(null);
   const [layoutChoice, setLayoutChoice] = useState<LayoutChoice | null>(null);
   const [themePreset, setThemePreset] = useState<ThemePreset | null>(null);
   const [businessInfo, setBusinessInfo] = useState<BusinessInfo>(EMPTY_BUSINESS_INFO);
@@ -67,9 +70,10 @@ export function OnboardingWizard() {
   const [loading, setLoading] = useState(false);
 
   const isStepValid = (s: number): boolean => {
-    if (s === 0) return layoutChoice !== null;
-    if (s === 1) return themePreset !== null;
-    if (s === 2) {
+    if (s === 0) return businessType !== null;
+    if (s === 1) return layoutChoice !== null;
+    if (s === 2) return themePreset !== null;
+    if (s === 3) {
       return (
         !!ownerInfo.ownerName &&
         !!ownerInfo.ownerEmail &&
@@ -83,7 +87,7 @@ export function OnboardingWizard() {
   };
 
   const handleNext = () => {
-    if (step < 3) setStep((s) => s + 1);
+    if (step < 4) setStep((s) => s + 1);
   };
 
   const handleBack = () => {
@@ -112,7 +116,7 @@ export function OnboardingWizard() {
         body: JSON.stringify({
           name: businessInfo.name,
           slug,
-          template: "CUSTOM",
+          template: businessType || "CUSTOM",
           ownerId: registerData.user.id,
         }),
       });
@@ -141,7 +145,10 @@ export function OnboardingWizard() {
       // 4. Seed template data (categories + items with images)
       await api(`/businesses/${businessSlug}/seed-template`, {
         method: "POST",
-        body: JSON.stringify({ layoutType: layoutChoice ?? "FULLCARD" }),
+        body: JSON.stringify({
+          layoutType: layoutChoice ?? "FULLCARD",
+          businessType: businessType ?? "CAFE",
+        }),
       });
 
       // 5. Save business info (location, hours, tagline, phone)
@@ -173,7 +180,7 @@ export function OnboardingWizard() {
 
   // Steps 0-2 show split layout (left: content, right: preview)
   // Step 3 (complete) takes full width with its own centered layout
-  const isFinalStep = step === 3;
+  const isFinalStep = step === 4;
 
   return (
     <div className="flex flex-col min-h-[80vh] rounded-2xl bg-gradient-to-br from-indigo-50/30 via-white to-purple-50/20">
@@ -199,16 +206,19 @@ export function OnboardingWizard() {
           {/* Left side: step content — pb-24 ensures content doesn't hide behind sticky nav */}
           <div className="flex-1 min-w-0">
             {step === 0 && (
-              <StepLayout value={layoutChoice} onChange={setLayoutChoice} />
+              <StepBusinessType value={businessType} onChange={setBusinessType} />
             )}
             {step === 1 && (
+              <StepLayout value={layoutChoice} onChange={setLayoutChoice} />
+            )}
+            {step === 2 && (
               <StepTheme
                 value={themePreset}
                 onChange={setThemePreset}
                 layoutChoice={layoutChoice}
               />
             )}
-            {step === 2 && (
+            {step === 3 && (
               <StepInfo
                 businessInfo={businessInfo}
                 onBusinessInfoChange={setBusinessInfo}
