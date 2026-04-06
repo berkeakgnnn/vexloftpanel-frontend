@@ -90,8 +90,8 @@ export default function SettingsPage({ params }: { params: Promise<{ slug: strin
     <div className="space-y-6">
       <div className="flex items-center gap-3">
         <Link href={`/businesses/${slug}`}>
-          <Button variant="ghost" size="icon" className="h-8 w-8">
-            <ArrowLeft className="h-4 w-4" />
+          <Button variant="ghost" size="icon" className="h-9 w-9">
+            <ArrowLeft className="h-5 w-5" />
           </Button>
         </Link>
         <div>
@@ -106,7 +106,7 @@ export default function SettingsPage({ params }: { params: Promise<{ slug: strin
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-1.5">
-            <Label>Isletme Adi</Label>
+            <Label className="text-sm font-medium">Isletme Adi</Label>
             <Input
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
@@ -114,7 +114,7 @@ export default function SettingsPage({ params }: { params: Promise<{ slug: strin
             />
           </div>
           <div className="space-y-1.5">
-            <Label>Slug</Label>
+            <Label className="text-sm font-medium">Slug</Label>
             <Input
               value={form.slug}
               onChange={(e) =>
@@ -130,7 +130,7 @@ export default function SettingsPage({ params }: { params: Promise<{ slug: strin
             </p>
           </div>
           <div className="space-y-1.5">
-            <Label>Sablon</Label>
+            <Label className="text-sm font-medium">Sablon</Label>
             <Select
               value={form.template}
               onValueChange={(v) => { if (v) setForm((f) => ({ ...f, template: v })); }}
@@ -152,7 +152,7 @@ export default function SettingsPage({ params }: { params: Promise<{ slug: strin
               checked={form.isActive}
               onCheckedChange={(v) => setForm((f) => ({ ...f, isActive: v }))}
             />
-            <Label>Aktif</Label>
+            <Label className="text-sm font-medium">Aktif</Label>
           </div>
         </CardContent>
       </Card>

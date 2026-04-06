@@ -38,7 +38,7 @@ function ColorField({
 
   return (
     <div className="space-y-1.5">
-      <Label>{label}</Label>
+      <Label className="text-sm">{label}</Label>
       <div className="relative">
         <button
           type="button"
@@ -61,7 +61,7 @@ function ColorField({
               placeholder="#ffffff"
             />
             <Button
-              size="sm"
+              size="default"
               variant="outline"
               className="w-full mt-2"
               onClick={() => setOpen(false)}
@@ -115,8 +115,8 @@ export default function ThemePage({ params }: { params: Promise<{ slug: string }
     <div className="space-y-6">
       <div className="flex items-center gap-3">
         <Link href={`/businesses/${slug}`}>
-          <Button variant="ghost" size="icon" className="h-8 w-8">
-            <ArrowLeft className="h-4 w-4" />
+          <Button variant="ghost" size="icon" className="h-9 w-9">
+            <ArrowLeft className="h-5 w-5" />
           </Button>
         </Link>
         <div>
@@ -150,7 +150,7 @@ export default function ThemePage({ params }: { params: Promise<{ slug: string }
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="space-y-1.5">
-                <Label>Baslik Fontu</Label>
+                <Label className="text-sm">Baslik Fontu</Label>
                 <Input
                   value={(form.fontHeading as string) ?? ""}
                   onChange={(e) => setForm((f) => ({ ...f, fontHeading: e.target.value }))}
@@ -158,7 +158,7 @@ export default function ThemePage({ params }: { params: Promise<{ slug: string }
                 />
               </div>
               <div className="space-y-1.5">
-                <Label>Govde Fontu</Label>
+                <Label className="text-sm">Govde Fontu</Label>
                 <Input
                   value={(form.fontBody as string) ?? ""}
                   onChange={(e) => setForm((f) => ({ ...f, fontBody: e.target.value }))}
@@ -179,7 +179,7 @@ export default function ThemePage({ params }: { params: Promise<{ slug: string }
                     key={opt}
                     type="button"
                     onClick={() => setForm((f) => ({ ...f, layoutType: opt }))}
-                    className={`px-3 py-2 rounded-lg border text-xs font-medium transition-colors ${
+                    className={`cursor-pointer px-3 py-2 rounded-lg border text-xs font-medium transition-colors ${
                       form.layoutType === opt
                         ? "bg-primary text-primary-foreground border-transparent"
                         : "border-input hover:bg-muted"
@@ -198,7 +198,7 @@ export default function ThemePage({ params }: { params: Promise<{ slug: string }
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="space-y-1.5">
-                <Label>Logo URL</Label>
+                <Label className="text-sm">Logo URL</Label>
                 <Input
                   value={(form.logo as string) ?? ""}
                   onChange={(e) => setForm((f) => ({ ...f, logo: e.target.value }))}
@@ -206,7 +206,7 @@ export default function ThemePage({ params }: { params: Promise<{ slug: string }
                 />
               </div>
               <div className="space-y-1.5">
-                <Label>Hero Gorsel URL</Label>
+                <Label className="text-sm">Hero Gorsel URL</Label>
                 <Input
                   value={(form.heroImage as string) ?? ""}
                   onChange={(e) => setForm((f) => ({ ...f, heroImage: e.target.value }))}

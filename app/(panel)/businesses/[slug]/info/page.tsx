@@ -46,8 +46,8 @@ export default function BusinessInfoPage({ params }: { params: Promise<{ slug: s
     <div className="space-y-6">
       <div className="flex items-center gap-3">
         <Link href={`/businesses/${slug}`}>
-          <Button variant="ghost" size="icon" className="h-8 w-8">
-            <ArrowLeft className="h-4 w-4" />
+          <Button variant="ghost" size="icon" className="h-9 w-9">
+            <ArrowLeft className="h-5 w-5" />
           </Button>
         </Link>
         <div>
@@ -63,7 +63,7 @@ export default function BusinessInfoPage({ params }: { params: Promise<{ slug: s
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-1.5">
-              <Label>Slogan (TR)</Label>
+              <Label className="text-sm font-medium">Slogan (TR)</Label>
               <Input
                 value={form.tagline ?? ""}
                 onChange={field("tagline")}
@@ -71,7 +71,7 @@ export default function BusinessInfoPage({ params }: { params: Promise<{ slug: s
               />
             </div>
             <div className="space-y-1.5">
-              <Label>Kurulus Yili</Label>
+              <Label className="text-sm font-medium">Kurulus Yili</Label>
               <Input
                 value={form.established ?? ""}
                 onChange={field("established")}
@@ -79,7 +79,7 @@ export default function BusinessInfoPage({ params }: { params: Promise<{ slug: s
               />
             </div>
             <div className="space-y-1.5">
-              <Label>Telefon</Label>
+              <Label className="text-sm font-medium">Telefon</Label>
               <Input
                 value={form.phone ?? ""}
                 onChange={field("phone")}
@@ -87,7 +87,7 @@ export default function BusinessInfoPage({ params }: { params: Promise<{ slug: s
               />
             </div>
             <div className="space-y-1.5">
-              <Label>Website</Label>
+              <Label className="text-sm font-medium">Website</Label>
               <Input
                 value={form.website ?? ""}
                 onChange={field("website")}
@@ -95,7 +95,7 @@ export default function BusinessInfoPage({ params }: { params: Promise<{ slug: s
               />
             </div>
             <div className="space-y-1.5">
-              <Label>Instagram</Label>
+              <Label className="text-sm font-medium">Instagram</Label>
               <Input
                 value={form.instagram ?? ""}
                 onChange={field("instagram")}
@@ -112,7 +112,7 @@ export default function BusinessInfoPage({ params }: { params: Promise<{ slug: s
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-1.5">
-                <Label>Lokasyon (TR)</Label>
+                <Label className="text-sm font-medium">Lokasyon (TR)</Label>
                 <Input
                   value={form.locationTr ?? ""}
                   onChange={field("locationTr")}
@@ -120,7 +120,7 @@ export default function BusinessInfoPage({ params }: { params: Promise<{ slug: s
                 />
               </div>
               <div className="space-y-1.5">
-                <Label>Lokasyon (EN)</Label>
+                <Label className="text-sm font-medium">Lokasyon (EN)</Label>
                 <Input
                   value={form.locationEn ?? ""}
                   onChange={field("locationEn")}
@@ -136,7 +136,7 @@ export default function BusinessInfoPage({ params }: { params: Promise<{ slug: s
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-1.5">
-                <Label>Saatler (TR)</Label>
+                <Label className="text-sm font-medium">Saatler (TR)</Label>
                 <Input
                   value={form.hoursTr ?? ""}
                   onChange={field("hoursTr")}
@@ -144,7 +144,7 @@ export default function BusinessInfoPage({ params }: { params: Promise<{ slug: s
                 />
               </div>
               <div className="space-y-1.5">
-                <Label>Saatler (EN)</Label>
+                <Label className="text-sm font-medium">Saatler (EN)</Label>
                 <Input
                   value={form.hoursEn ?? ""}
                   onChange={field("hoursEn")}

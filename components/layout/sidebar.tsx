@@ -1,10 +1,22 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutDashboard, Store, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { useAuth } from "@/lib/hooks/use-auth";
 import { logout } from "@/lib/auth";
 import { cn } from "@/lib/utils";
@@ -24,6 +36,7 @@ const mainNav: NavItem[] = [
 export function Sidebar() {
   const pathname = usePathname();
   const { user, isAdmin } = useAuth();
+  const [logoutOpen, setLogoutOpen] = useState(false);
 
   const filteredNav = mainNav.filter((item) => !item.adminOnly || isAdmin);
 
@@ -31,7 +44,10 @@ export function Sidebar() {
     <aside className="hidden md:flex w-[220px] flex-col border-r bg-gray-50/50 h-screen sticky top-0">
       {/* Logo */}
       <div className="p-4 border-b">
-        <Link href="/dashboard" className="flex items-center gap-2">
+        <Link
+          href="/dashboard"
+          className="flex items-center gap-2 hover:opacity-70 transition-opacity"
+        >
           <span className="font-bold text-base">Vexloft</span>
           <span className="text-xs text-muted-foreground">Panel</span>
         </Link>
@@ -67,16 +83,29 @@ export function Sidebar() {
         <div className="flex items-center justify-between">
           <div className="min-w-0">
             <p className="text-sm font-medium truncate">{user?.name}</p>
-            <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
+            <p className="text-xs text-muted-foreground truncate mt-0.5">{user?.email}</p>
           </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={logout}
-            className="h-8 w-8 shrink-0"
-          >
-            <LogOut className="h-4 w-4" />
-          </Button>
+          <AlertDialog open={logoutOpen} onOpenChange={setLogoutOpen}>
+            <AlertDialogTrigger
+              render={
+                <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0">
+                  <LogOut className="h-4 w-4" />
+                </Button>
+              }
+            />
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Cikis Yap</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Oturumunuzu kapatmak istediginize emin misiniz?
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Iptal</AlertDialogCancel>
+                <AlertDialogAction onClick={logout}>Cikis Yap</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       </div>
     </aside>

@@ -95,7 +95,7 @@ export default function DashboardPage() {
             </div>
             <div>
               <p className="text-2xl font-bold">{businesses?.length || 0}</p>
-              <p className="text-xs text-muted-foreground">Toplam Isletme</p>
+              <p className="text-sm text-muted-foreground">Toplam Isletme</p>
             </div>
           </CardContent>
         </Card>
@@ -106,7 +106,7 @@ export default function DashboardPage() {
             </div>
             <div>
               <p className="text-2xl font-bold">{totalCategories}</p>
-              <p className="text-xs text-muted-foreground">Toplam Kategori</p>
+              <p className="text-sm text-muted-foreground">Toplam Kategori</p>
             </div>
           </CardContent>
         </Card>
@@ -117,7 +117,7 @@ export default function DashboardPage() {
             </div>
             <div>
               <p className="text-2xl font-bold">{totalItems}</p>
-              <p className="text-xs text-muted-foreground">Toplam Urun</p>
+              <p className="text-sm text-muted-foreground">Toplam Urun</p>
             </div>
           </CardContent>
         </Card>

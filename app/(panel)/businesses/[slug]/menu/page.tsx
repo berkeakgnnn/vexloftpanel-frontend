@@ -20,7 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Dialog,
@@ -369,9 +369,10 @@ function CategorySection({
     <Card>
       <CardHeader className="p-3">
         <div className="flex items-center gap-2">
+          {/* Expand/collapse toggle — cursor-pointer and hover state for clarity */}
           <button
             onClick={() => setExpanded((v) => !v)}
-            className="flex flex-1 items-center gap-2 text-left"
+            className="flex flex-1 items-center gap-2 text-left cursor-pointer hover:text-foreground transition-colors"
           >
             {expanded ? (
               <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
@@ -379,7 +380,7 @@ function CategorySection({
               <ChevronRight className="h-4 w-4 text-muted-foreground shrink-0" />
             )}
             <div>
-              <span className="font-medium text-sm">{category.nameTr}</span>
+              <span className="font-semibold text-sm">{category.nameTr}</span>
               <span className="text-xs text-muted-foreground ml-2">
                 {category._count?.items ?? 0} urun
               </span>
@@ -387,10 +388,15 @@ function CategorySection({
           </button>
           <div className="flex items-center gap-1">
             <Button variant="ghost" size="icon-sm" onClick={() => onEdit(category)}>
-              <Pencil className="h-3.5 w-3.5" />
+              <Pencil className="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="icon-sm" onClick={() => onDelete(category)}>
-              <Trash2 className="h-3.5 w-3.5 text-destructive" />
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              onClick={() => onDelete(category)}
+              className="hover:bg-destructive/10"
+            >
+              <Trash2 className="h-4 w-4 text-destructive" />
             </Button>
           </div>
         </div>
@@ -417,16 +423,25 @@ function CategorySection({
                   )}
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">{item.nameTr}</p>
+                    {/* Description shown when present */}
+                    {item.descriptionTr && (
+                      <p className="text-sm text-muted-foreground truncate">{item.descriptionTr}</p>
+                    )}
                     <p className="text-xs text-muted-foreground">
                       {typeof item.price === "number" ? item.price.toFixed(2) : item.price} TL
                     </p>
                   </div>
                   <div className="flex items-center gap-1 shrink-0">
                     <Button variant="ghost" size="icon-sm" onClick={() => setEditItem(item)}>
-                      <Pencil className="h-3.5 w-3.5" />
+                      <Pencil className="h-4 w-4" />
                     </Button>
-                    <Button variant="ghost" size="icon-sm" onClick={() => setDeleteItem(item)}>
-                      <Trash2 className="h-3.5 w-3.5 text-destructive" />
+                    <Button
+                      variant="ghost"
+                      size="icon-sm"
+                      onClick={() => setDeleteItem(item)}
+                      className="hover:bg-destructive/10"
+                    >
+                      <Trash2 className="h-4 w-4 text-destructive" />
                     </Button>
                   </div>
                 </div>
@@ -434,10 +449,10 @@ function CategorySection({
               <Button
                 variant="outline"
                 size="sm"
-                className="w-full mt-1"
+                className="w-full mt-1 text-sm"
                 onClick={() => setAddItemOpen(true)}
               >
-                <Plus className="h-3.5 w-3.5 mr-1" />
+                <Plus className="h-4 w-4 mr-1" />
                 Urun Ekle
               </Button>
             </>
@@ -527,8 +542,8 @@ export default function MenuPage({ params }: { params: Promise<{ slug: string }>
     <div className="space-y-6">
       <div className="flex items-center gap-3">
         <Link href={`/businesses/${slug}`}>
-          <Button variant="ghost" size="icon" className="h-8 w-8">
-            <ArrowLeft className="h-4 w-4" />
+          <Button variant="ghost" size="icon" className="h-9 w-9">
+            <ArrowLeft className="h-5 w-5" />
           </Button>
         </Link>
         <div className="flex-1">

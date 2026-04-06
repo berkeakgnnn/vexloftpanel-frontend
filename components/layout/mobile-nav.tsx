@@ -6,12 +6,24 @@ import { usePathname } from "next/navigation";
 import { Menu, LayoutDashboard, Store, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { useAuth } from "@/lib/hooks/use-auth";
 import { logout } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const [logoutOpen, setLogoutOpen] = useState(false);
   const pathname = usePathname();
   const { user, isAdmin } = useAuth();
 
@@ -46,10 +58,10 @@ export function MobileNav() {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "flex items-center gap-3 px-3 py-2 rounded-md text-sm",
+                    "flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors",
                     isActive
                       ? "bg-gray-100 font-medium"
-                      : "text-muted-foreground"
+                      : "text-muted-foreground hover:bg-gray-100 hover:text-foreground"
                   )}
                 >
                   <item.icon className="h-4 w-4" />
@@ -64,9 +76,27 @@ export function MobileNav() {
                 <p className="text-sm font-medium">{user?.name}</p>
                 <p className="text-xs text-muted-foreground">{user?.email}</p>
               </div>
-              <Button variant="ghost" size="icon" onClick={logout}>
-                <LogOut className="h-4 w-4" />
-              </Button>
+              <AlertDialog open={logoutOpen} onOpenChange={setLogoutOpen}>
+                <AlertDialogTrigger
+                  render={
+                    <Button variant="ghost" size="icon">
+                      <LogOut className="h-4 w-4" />
+                    </Button>
+                  }
+                />
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Cikis Yap</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Oturumunuzu kapatmak istediginize emin misiniz?
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Iptal</AlertDialogCancel>
+                    <AlertDialogAction onClick={logout}>Cikis Yap</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </div>
           </div>
         </SheetContent>

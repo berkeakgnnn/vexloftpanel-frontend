@@ -46,10 +46,10 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <Card className="w-full max-w-sm">
         <CardHeader className="text-center">
-          <div className="text-xs tracking-[4px] text-muted-foreground font-medium mb-2">
+          <div className="text-sm tracking-[4px] text-muted-foreground font-medium mb-2">
             VEXLOFT
           </div>
-          <CardTitle className="text-xl">Panel</CardTitle>
+          <CardTitle className="text-2xl">Panel</CardTitle>
           <CardDescription>Hesabiniza giris yapin</CardDescription>
         </CardHeader>
         <CardContent>

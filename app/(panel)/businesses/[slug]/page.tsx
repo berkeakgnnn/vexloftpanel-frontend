@@ -61,8 +61,8 @@ export default function BusinessPage({ params }: { params: Promise<{ slug: strin
     <div className="space-y-6">
       <div className="flex items-center gap-3">
         <Link href="/dashboard">
-          <Button variant="ghost" size="icon" className="h-8 w-8">
-            <ArrowLeft className="h-4 w-4" />
+          <Button variant="ghost" size="icon" className="h-9 w-9">
+            <ArrowLeft className="h-5 w-5" />
           </Button>
         </Link>
         <div>
