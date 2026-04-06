@@ -66,7 +66,6 @@ export function OnboardingWizard() {
   const [ownerInfo, setOwnerInfo] = useState<OwnerInfo>(EMPTY_OWNER_INFO);
   const [loading, setLoading] = useState(false);
 
-  // Determine whether "Ileri" button is enabled for each step
   const isStepValid = (s: number): boolean => {
     if (s === 0) return layoutChoice !== null;
     if (s === 1) return themePreset !== null;
@@ -166,59 +165,71 @@ export function OnboardingWizard() {
     router.push("/dashboard");
   };
 
+  // Steps 0-2 show split layout (left: content, right: preview)
+  // Step 3 (complete) takes full width with its own centered layout
+  const isFinalStep = step === 3;
+
   return (
-    <div className="flex flex-col min-h-[80vh]">
+    <div className="flex flex-col min-h-[80vh] rounded-2xl bg-gradient-to-br from-indigo-50/30 via-white to-purple-50/20">
+      {/* Progress bar — full width at top */}
       <ProgressBar currentStep={step} />
 
-      <div className="flex-1 flex flex-col lg:flex-row gap-8 mt-2">
-        {/* Left: step content */}
-        <div className="flex-1 min-w-0">
-          {step === 0 && (
-            <StepLayout value={layoutChoice} onChange={setLayoutChoice} />
-          )}
-          {step === 1 && (
-            <StepTheme
-              value={themePreset}
-              onChange={setThemePreset}
-              layoutChoice={layoutChoice}
-            />
-          )}
-          {step === 2 && (
-            <StepInfo
-              businessInfo={businessInfo}
-              onBusinessInfoChange={setBusinessInfo}
-              ownerInfo={ownerInfo}
-              onOwnerInfoChange={setOwnerInfo}
-            />
-          )}
-          {step === 3 && (
-            <StepComplete
-              layoutChoice={layoutChoice}
-              themePreset={themePreset}
-              businessInfo={businessInfo}
-              loading={loading}
-              onConfirm={handleCreate}
-              onLater={handleLater}
-            />
-          )}
+      {/* Main content area */}
+      {isFinalStep ? (
+        /* Final step: full-width centered layout */
+        <div className="flex-1 flex flex-col px-4 pb-8">
+          <StepComplete
+            layoutChoice={layoutChoice}
+            themePreset={themePreset}
+            businessInfo={businessInfo}
+            loading={loading}
+            onConfirm={handleCreate}
+            onLater={handleLater}
+          />
         </div>
-
-        {/* Right: live preview — hidden on mobile, hidden on final step (step 3 has its own preview) */}
-        {step < 3 && (
-          <div className="hidden lg:flex flex-col items-center justify-start pt-4 w-64 shrink-0">
-            <LayoutPreview
-              layoutChoice={layoutChoice}
-              themePreset={themePreset}
-              businessName={businessInfo.name}
-              businessTagline={businessInfo.tagline}
-            />
+      ) : (
+        /* Steps 0-2: split layout */
+        <div className="flex-1 flex flex-col lg:flex-row gap-6 px-4 pb-4">
+          {/* Left side: step content (60%) */}
+          <div className="flex-1 min-w-0">
+            {step === 0 && (
+              <StepLayout value={layoutChoice} onChange={setLayoutChoice} />
+            )}
+            {step === 1 && (
+              <StepTheme
+                value={themePreset}
+                onChange={setThemePreset}
+                layoutChoice={layoutChoice}
+              />
+            )}
+            {step === 2 && (
+              <StepInfo
+                businessInfo={businessInfo}
+                onBusinessInfoChange={setBusinessInfo}
+                ownerInfo={ownerInfo}
+                onOwnerInfoChange={setOwnerInfo}
+              />
+            )}
           </div>
-        )}
-      </div>
 
-      {/* Navigation buttons (hidden on final step, which has its own buttons) */}
-      {step < 3 && (
-        <div className="flex items-center justify-between pt-8 border-t mt-8">
+          {/* Right side: live preview (40%) — desktop only */}
+          <div className="hidden lg:flex flex-col items-center justify-start pt-2 w-[340px] shrink-0">
+            <div className="sticky top-6 flex flex-col items-center">
+              <LayoutPreview
+                layoutChoice={layoutChoice}
+                themePreset={themePreset}
+                businessName={businessInfo.name}
+                businessTagline={businessInfo.tagline}
+                size="medium"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Navigation bar — shown on steps 0-2 */}
+      {!isFinalStep && (
+        <div className="flex items-center justify-between px-4 py-5 border-t border-border/50 mt-auto">
           <Button
             variant="outline"
             onClick={handleBack}
@@ -232,7 +243,7 @@ export function OnboardingWizard() {
           <Button
             onClick={handleNext}
             disabled={!isStepValid(step)}
-            className="h-11 px-8 text-base font-semibold bg-gradient-to-r from-indigo-700 to-indigo-500 hover:from-indigo-800 hover:to-indigo-600 text-white border-0 disabled:opacity-50"
+            className="h-11 px-8 text-base font-semibold bg-gradient-to-r from-indigo-700 to-indigo-500 hover:from-indigo-800 hover:to-indigo-600 text-white border-0 disabled:opacity-50 shadow-md shadow-indigo-200/50"
           >
             {loading ? (
               <>
