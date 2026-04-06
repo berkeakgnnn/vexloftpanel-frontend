@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import {
   useCategories,
@@ -186,7 +186,7 @@ function ItemSheet({
   onSave: (data: ItemFormState) => void;
   loading: boolean;
 }) {
-  const [form, setForm] = useState<ItemFormState>({
+  const buildFormFromInitial = () => ({
     nameTr: initial?.nameTr ?? "",
     nameEn: initial?.nameEn ?? "",
     descriptionTr: initial?.descriptionTr ?? "",
@@ -195,6 +195,15 @@ function ItemSheet({
     image: initial?.image ?? "",
     categoryId: initial?.categoryId ?? categoryId,
   });
+
+  const [form, setForm] = useState<ItemFormState>(buildFormFromInitial);
+
+  // Sync form when initial (editItem) changes
+  useEffect(() => {
+    if (initial) {
+      setForm(buildFormFromInitial());
+    }
+  }, [initial?.id]);
 
   const handleOpen = (v: boolean) => {
     if (v) {
