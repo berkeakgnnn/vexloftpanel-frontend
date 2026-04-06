@@ -52,7 +52,7 @@ export function StepBusinessType({ value, onChange }: StepBusinessTypeProps) {
               type="button"
               onClick={() => onChange(type.id)}
               className={cn(
-                "relative flex flex-col items-center gap-4 rounded-2xl border-2 p-8 text-center transition-all duration-200 group cursor-pointer",
+                "relative flex flex-col items-center justify-center gap-4 rounded-2xl border-2 p-6 text-center transition-all duration-200 group cursor-pointer aspect-square",
                 isSelected
                   ? "border-indigo-500 ring-2 ring-indigo-500 bg-indigo-50/50 shadow-lg scale-[1.02]"
                   : "border-border hover:shadow-md hover:scale-[1.01] bg-card"

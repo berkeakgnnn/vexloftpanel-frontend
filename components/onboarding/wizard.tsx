@@ -234,7 +234,7 @@ export function OnboardingWizard() {
               <LayoutPreview
                 layoutChoice={layoutChoice}
                 themePreset={themePreset}
-                businessName={businessInfo.name}
+                businessName={businessInfo.name || (businessType === "RESTAURANT" ? "Restoraniniz" : businessType === "PUB" ? "Pub'iniz" : "Kafeniz")}
                 businessTagline={businessInfo.tagline}
                 size="medium"
               />
