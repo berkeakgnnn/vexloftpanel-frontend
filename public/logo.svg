@@ -1,0 +1,7 @@
+<svg width="140" height="32" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- V mark -->
+  <path d="M4 6L14 26L24 6" stroke="#111" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M9 6L14 16" stroke="#6366f1" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Text -->
+  <text x="32" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#111" letter-spacing="0.5">Vexloft</text>
+</svg>

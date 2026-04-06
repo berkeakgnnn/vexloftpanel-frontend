@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { LayoutDashboard, Store, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -48,10 +49,7 @@ export function Sidebar() {
           href="/dashboard"
           className="flex items-center gap-2.5 hover:opacity-75 transition-opacity"
         >
-          {/* Colored accent bar */}
-          <span className="inline-block w-1 h-5 rounded-full bg-foreground shrink-0" />
-          <span className="font-bold text-lg tracking-tight">Vexloft</span>
-          <span className="text-sm text-muted-foreground font-medium">Panel</span>
+          <Image src="/logo.svg" alt="Vexloft" width={120} height={28} priority />
         </Link>
       </div>
 
