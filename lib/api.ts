@@ -34,8 +34,8 @@ export async function api<T>(endpoint: string, options: FetchOptions = {}): Prom
     }
   }
 
-  // Don't set Content-Type for FormData (file upload)
-  if (!(rest.body instanceof FormData)) {
+  // Only set Content-Type for requests with a body (not DELETE without body)
+  if (rest.body && !(rest.body instanceof FormData)) {
     headers["Content-Type"] = "application/json";
   }
 
