@@ -216,6 +216,7 @@ export function OnboardingWizard() {
                 value={themePreset}
                 onChange={setThemePreset}
                 layoutChoice={layoutChoice}
+                businessType={businessType}
               />
             )}
             {step === 3 && (

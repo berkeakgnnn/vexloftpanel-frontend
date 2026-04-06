@@ -1,16 +1,18 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { THEME_PRESETS, type LayoutChoice, type ThemePreset } from "./theme-presets";
+import { getThemesByType, type LayoutChoice, type ThemePreset } from "./theme-presets";
 import { Check } from "lucide-react";
 
 interface StepThemeProps {
   value: ThemePreset | null;
   onChange: (theme: ThemePreset) => void;
   layoutChoice: LayoutChoice | null;
+  businessType: string | null;
 }
 
-export function StepTheme({ value, onChange, layoutChoice: _layoutChoice }: StepThemeProps) {
+export function StepTheme({ value, onChange, layoutChoice: _layoutChoice, businessType }: StepThemeProps) {
+  const themes = getThemesByType(businessType);
   return (
     <div className="space-y-6">
       <div>
@@ -24,7 +26,7 @@ export function StepTheme({ value, onChange, layoutChoice: _layoutChoice }: Step
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-        {THEME_PRESETS.map((preset) => {
+        {themes.map((preset) => {
           const isSelected = value?.id === preset.id;
           return (
             <button
