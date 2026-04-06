@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import { THEME_PRESETS, type LayoutChoice, type ThemePreset } from "./theme-presets";
-import { MiniLayoutPreview } from "./layout-preview";
 import { Check } from "lucide-react";
 
 interface StepThemeProps {
@@ -11,15 +10,16 @@ interface StepThemeProps {
   layoutChoice: LayoutChoice | null;
 }
 
-export function StepTheme({ value, onChange, layoutChoice }: StepThemeProps) {
-  const layout = layoutChoice ?? "FULLCARD";
-
+export function StepTheme({ value, onChange, layoutChoice: _layoutChoice }: StepThemeProps) {
   return (
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold tracking-tight">Renk temasinizi secin</h2>
         <p className="text-base text-muted-foreground mt-1">
           Isletmenizin atmosferini yansitan bir renk paleti secin.
+        </p>
+        <p className="text-sm text-indigo-600 font-medium mt-1">
+          Sectiginiz temayi daha sonra dilediginiz gibi ozellestirebilirsiniz.
         </p>
       </div>
 
@@ -32,54 +32,64 @@ export function StepTheme({ value, onChange, layoutChoice }: StepThemeProps) {
               type="button"
               onClick={() => onChange(preset)}
               className={cn(
-                "relative flex flex-col items-center gap-3 rounded-2xl border-2 p-4 text-left transition-all duration-200",
+                "relative flex flex-col rounded-2xl border-2 overflow-hidden text-left transition-all duration-200",
                 isSelected
-                  ? "border-indigo-500 ring-2 ring-indigo-200 bg-indigo-50/60 scale-[1.02] shadow-lg"
-                  : "border-border hover:border-indigo-300 hover:shadow-lg hover:scale-[1.01] bg-card"
+                  ? "border-indigo-500 ring-2 ring-indigo-500 shadow-lg"
+                  : "border-border hover:shadow-md bg-card"
               )}
-              style={{ minHeight: 220 }}
+              style={{ minHeight: 140, maxHeight: 160 }}
             >
               {/* Selected badge */}
               {isSelected && (
-                <div className="absolute top-2.5 right-2.5 w-5 h-5 rounded-full bg-indigo-600 flex items-center justify-center shadow-sm">
+                <div className="absolute top-2.5 right-2.5 w-5 h-5 rounded-full bg-indigo-600 flex items-center justify-center shadow-sm z-10">
                   <Check className="w-3 h-3 text-white" />
                 </div>
               )}
 
-              {/* Mini phone preview with actual theme applied */}
-              <MiniLayoutPreview layoutChoice={layout} themePreset={preset} />
+              {/* Color bar — gradient from primary to accent */}
+              <div
+                className="w-full flex-shrink-0"
+                style={{
+                  height: 48,
+                  background: `linear-gradient(to right, ${preset.colors.primaryColor}, ${preset.colors.accentColor})`,
+                }}
+              />
 
-              {/* Color palette dots */}
-              <div className="flex gap-1.5 items-center">
-                {[
-                  { color: preset.colors.bgColor, label: "Arka plan" },
-                  { color: preset.colors.primaryColor, label: "Ana renk" },
-                  { color: preset.colors.accentColor, label: "Vurgu" },
-                  { color: preset.colors.cardBgColor, label: "Kart" },
-                  { color: preset.colors.textColor, label: "Yazi" },
-                ].map(({ color, label }) => (
-                  <div
-                    key={label}
-                    title={label}
-                    style={{ backgroundColor: color }}
-                    className="w-4 h-4 rounded-full border border-black/10 shadow-sm flex-shrink-0"
-                  />
-                ))}
-              </div>
+              {/* Card body */}
+              <div className="flex flex-col gap-2 p-3 flex-1" style={{ backgroundColor: preset.colors.bgColor }}>
+                {/* Color dots: bg, primary, accent, card, text */}
+                <div className="flex gap-1.5 items-center">
+                  {[
+                    { color: preset.colors.bgColor, label: "Arka plan" },
+                    { color: preset.colors.primaryColor, label: "Ana renk" },
+                    { color: preset.colors.accentColor, label: "Vurgu" },
+                    { color: preset.colors.cardBgColor, label: "Kart" },
+                    { color: preset.colors.textColor, label: "Yazi" },
+                  ].map(({ color, label }) => (
+                    <div
+                      key={label}
+                      title={label}
+                      style={{ backgroundColor: color }}
+                      className="w-4 h-4 rounded-full border border-black/10 shadow-sm flex-shrink-0"
+                    />
+                  ))}
+                </div>
 
-              {/* Theme name and description */}
-              <div className="text-center w-full">
-                <p
-                  className={cn(
-                    "text-sm font-semibold",
-                    isSelected ? "text-indigo-700" : "text-foreground"
-                  )}
-                >
-                  {preset.name}
-                </p>
-                <p className="text-xs text-muted-foreground mt-0.5 leading-snug">
-                  {preset.description}
-                </p>
+                {/* Theme name and description */}
+                <div>
+                  <p
+                    className={cn(
+                      "text-base font-semibold leading-tight",
+                      isSelected ? "text-indigo-700" : "text-foreground"
+                    )}
+                    style={isSelected ? undefined : { color: preset.colors.textColor }}
+                  >
+                    {preset.name}
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-0.5 leading-snug">
+                    {preset.description}
+                  </p>
+                </div>
               </div>
             </button>
           );

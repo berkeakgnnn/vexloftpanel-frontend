@@ -189,8 +189,8 @@ export function OnboardingWizard() {
         </div>
       ) : (
         /* Steps 0-2: split layout */
-        <div className="flex-1 flex flex-col lg:flex-row gap-6 px-4 pb-4">
-          {/* Left side: step content (60%) */}
+        <div className="flex-1 flex flex-col lg:flex-row gap-6 px-4 pb-24">
+          {/* Left side: step content — pb-24 ensures content doesn't hide behind sticky nav */}
           <div className="flex-1 min-w-0">
             {step === 0 && (
               <StepLayout value={layoutChoice} onChange={setLayoutChoice} />
@@ -227,9 +227,9 @@ export function OnboardingWizard() {
         </div>
       )}
 
-      {/* Navigation bar — shown on steps 0-2 */}
+      {/* Navigation bar — sticky at bottom so it's always visible */}
       {!isFinalStep && (
-        <div className="flex items-center justify-between px-4 py-5 border-t border-border/50 mt-auto">
+        <div className="sticky bottom-0 bg-white/80 backdrop-blur border-t px-6 py-4 flex justify-between items-center">
           <Button
             variant="outline"
             onClick={handleBack}
