@@ -3,7 +3,8 @@
 import { useEffect } from "react";
 import { useRouter, useParams, usePathname } from "next/navigation";
 import Link from "next/link";
-import { isAuthenticated, logout, getUser } from "@/lib/auth";
+import { isAuthenticated, logout } from "@/lib/auth";
+import { useAuth } from "@/lib/hooks/use-auth";
 import { useBusiness } from "@/lib/hooks/use-businesses";
 import { LogoIcon } from "@/components/logo";
 import { Button } from "@/components/ui/button";
@@ -26,7 +27,7 @@ interface Tab {
 function OwnerHeader({ slug }: { slug: string }) {
   const { data: business } = useBusiness(slug);
   const pathname = usePathname();
-  const user = getUser();
+  const { user } = useAuth();
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
 
